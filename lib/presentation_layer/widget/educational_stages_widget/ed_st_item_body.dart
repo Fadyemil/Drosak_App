@@ -8,15 +8,15 @@ class EdStItemBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Container(
-      // padding: EdgeInsets.all(8),
-      margin: EdgeInsets.all(8),
-      width: size.width,
-      height: size.height * 0.16,
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(12),
-        border: Border.all(color: ColorConst.kPrimaryColor),
-      ),
-      child: ListTile(
+        // padding: EdgeInsets.all(8),
+        margin: EdgeInsets.all(8),
+        width: size.width,
+        height: size.height * 0.16,
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(12),
+          border: Border.all(color: ColorConst.kPrimaryColor),
+        ),
+        child: ListTile(
           title: Text(
             'seventh grade',
             style: TextStyle(
@@ -38,7 +38,19 @@ for example.''',
               fontSize: 14,
             ),
           ),
-          trailing: Image.asset('assets/images/test.png')),
-    );
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              IconButton.filledTonal(
+                onPressed: () {},
+                icon: Icon(Icons.edit),
+              ),
+              IconButton.outlined(
+                onPressed: () {},
+                icon: Icon(Icons.delete),
+              )
+            ],
+          ),
+        ));
   }
 }

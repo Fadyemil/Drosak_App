@@ -25,7 +25,11 @@ class EducationalStages extends StatelessWidget {
                 ),
                 context: context,
                 builder: (context) {
-                  return EdStBottmSheet();
+                  return GestureDetector(
+                      onTap: () {
+                        FocusScope.of(context).unfocus();
+                      },
+                      child: EdStBottmSheet());
                 },
               );
             },

@@ -31,7 +31,7 @@ class _AddEdStFormState extends State<AddEdStForm> {
             onSaved: (value) {
               title = value;
             },
-            hint: 'title',
+            hint: 'Enter the educational stage',
           ),
           const SizedBox(
             height: 16,
@@ -40,7 +40,7 @@ class _AddEdStFormState extends State<AddEdStForm> {
             onSaved: (value) {
               subTitle = value;
             },
-            hint: 'content',
+            hint: 'comments',
             maxLines: 5,
           ),
           const SizedBox(
