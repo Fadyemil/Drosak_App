@@ -58,8 +58,7 @@ class _bottonNavigiBarState extends State<bottonNavigiBar> {
                 'students',
                 style: TextStyle(
                   color: Color(0xff47463C),
-                  fontWeight: FontWeight.bold,
-                  fontSize: 16.0,
+                  fontSize: 12,
                 ),
               )
             ],
@@ -71,7 +70,10 @@ class _bottonNavigiBarState extends State<bottonNavigiBar> {
               SvgPicture.asset('assets/images/audience.svg'),
               Text(
                 'audience',
-                style: TextStyle(color: Color(0xff47463C)),
+                style: TextStyle(
+                  color: Color(0xff47463C),
+                  fontSize: 12,
+                ),
               )
             ],
           ),
@@ -82,7 +84,10 @@ class _bottonNavigiBarState extends State<bottonNavigiBar> {
               SvgPicture.asset('assets/images/payment_icon.svg'),
               Text(
                 'payment',
-                style: TextStyle(color: Color(0xff47463C)),
+                style: TextStyle(
+                  color: Color(0xff47463C),
+                  fontSize: 12,
+                ),
               )
             ],
           ),
