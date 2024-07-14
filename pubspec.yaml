@@ -1,0 +1,49 @@
+name: drosak
+description: "A new Flutter project."
+
+publish_to: 'none' 
+
+
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.4.3 <4.0.0'
+
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+
+ 
+  cupertino_icons: ^1.0.6
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+
+  flutter_lints: ^3.0.0
+
+
+flutter:
+
+  
+  uses-material-design: true
+
+  To add assets to your application, add an assets section, like this:
+  assets:
+    - assets/
+    - assets/images/
+
+  
+  fonts:
+    - family: AA-GALAXY
+      fonts:
+        - asset: assets/fonts/aa_galaxy/AA-GALAXY.otf
+    - family: ge_diner_one
+      fonts:
+        - asset: assets/fonts/ge_diner_one/ArbFONTS-GE-Dinar-One-Light.otf
+        - asset: assets/fonts/ge_diner_one/ArbFONTS-GE-Dinar-One-Light.otf
+          weight: 500
+ 
