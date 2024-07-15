@@ -1,3 +1,4 @@
+import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/business_logic_layer/ed_st_add/ed_st_add_cubit.dart';
 import 'package:drosak/presentation_layer/widget/educational_stages_widget/add_ed_st_form.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class EdStBottmSheet extends StatelessWidget {
             );
           }
           if (state is EdStAddSuccess) {
-            // context.read<EdStAddCubit>().addEdSt(edSt)
+            context.read<EdStCubit>().fetchAllEdSt();
             Navigator.pop(context);
           }
           if (state is EdStAddLoading) {

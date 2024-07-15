@@ -1,3 +1,4 @@
+import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/business_logic_layer/select_page/select_page_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
@@ -23,6 +24,9 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => SelectPageCubit(),
+        ),
+        BlocProvider(
+          create: (context) => EdStCubit(),
         ),
       ],
       child: MaterialApp(

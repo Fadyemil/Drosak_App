@@ -1,12 +1,17 @@
+import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class EdStItemBody extends StatelessWidget {
-  const EdStItemBody({super.key});
+  const EdStItemBody({super.key, required this.index});
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    List<EdStModel>? Data = context.read<EdStCubit>().notes;
     return Container(
         // padding: EdgeInsets.all(8),
         margin: EdgeInsets.all(8),
@@ -17,8 +22,8 @@ class EdStItemBody extends StatelessWidget {
           border: Border.all(color: ColorConst.kPrimaryColor),
         ),
         child: ListTile(
-          title: const Text(
-            'seventh grade',
+          title: Text(
+            Data?[index].title ?? 'no title',
             style: TextStyle(
               color: ColorConst.kWhiteColor,
               fontSize: 18,
@@ -27,8 +32,7 @@ class EdStItemBody extends StatelessWidget {
             ),
           ),
           subtitle: Text(
-            '''That class is the middle school class,That class is the middle class, and there are three students, 
-for example.''',
+            Data?[index].subtitle ?? 'No data',
             textScaler: const TextScaler.linear(1),
             softWrap: false,
             maxLines: 3,
