@@ -18,7 +18,7 @@ class EducationalStages extends StatelessWidget {
             text: 'Educational Stages',
             add: () {
               showModalBottomSheet(
-                backgroundColor: Color.fromARGB(255, 71, 70, 60),
+                backgroundColor: Color.fromARGB(255, 16, 112, 124),
                 isScrollControlled: true,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(16),

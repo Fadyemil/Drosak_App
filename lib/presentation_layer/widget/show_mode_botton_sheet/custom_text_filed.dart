@@ -1,25 +1,30 @@
+// ignore_for_file: must_be_immutable
+
 import 'package:drosak/core/const/color_const.dart';
 import 'package:flutter/material.dart';
 // import 'package:flutter/src/widgets/container.dart';
 import 'package:flutter/src/widgets/framework.dart';
 
 class CustomTextField extends StatelessWidget {
-  const CustomTextField(
+  CustomTextField(
       {super.key,
-      required this.hint,
+      this.hint,
       this.maxLines = 1,
       this.onSaved,
-      this.onChanged});
+      this.onChanged,
+      this.initialValue});
 
-  final String hint;
+  String? hint;
+
   final int maxLines;
-
+  String? initialValue;
   final void Function(String?)? onSaved;
 
   final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
+      initialValue: initialValue,
       onChanged: onChanged,
       onSaved: onSaved,
       validator: (value) {
