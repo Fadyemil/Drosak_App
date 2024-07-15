@@ -1,4 +1,4 @@
-import 'package:drosak/business_logic_layer/cubit/select_page_state.dart';
+import 'package:drosak/business_logic_layer/select_page/select_page_state.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class SelectPageCubit extends Cubit<SelectPageState> {

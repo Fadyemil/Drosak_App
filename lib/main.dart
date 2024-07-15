@@ -1,4 +1,4 @@
-import 'package:drosak/business_logic_layer/cubit/select_page_cubit.dart';
+import 'package:drosak/business_logic_layer/select_page/select_page_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/presentation_layer/screen/appPage.dart';
