@@ -34,7 +34,10 @@ class _EdStBodyState extends State<EdStBody> {
                 child: ListView.builder(
                   itemCount: Data?.length ?? 2,
                   itemBuilder: (context, index) {
-                    return EdStItemBody(index: index,);
+                    return EdStItemBody(
+                      index: index,
+                      edStModel: Data![index],
+                    );
                   },
                 ),
               ),
