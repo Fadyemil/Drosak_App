@@ -17,7 +17,7 @@ class EdStItemBody extends StatelessWidget {
           border: Border.all(color: ColorConst.kPrimaryColor),
         ),
         child: ListTile(
-          title: Text(
+          title: const Text(
             'seventh grade',
             style: TextStyle(
               color: ColorConst.kWhiteColor,
@@ -29,7 +29,7 @@ class EdStItemBody extends StatelessWidget {
           subtitle: Text(
             '''That class is the middle school class,That class is the middle class, and there are three students, 
 for example.''',
-            textScaler: TextScaler.linear(1),
+            textScaler: const TextScaler.linear(1),
             softWrap: false,
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
@@ -43,11 +43,11 @@ for example.''',
             children: [
               IconButton.filledTonal(
                 onPressed: () {},
-                icon: Icon(Icons.edit),
+                icon: const Icon(Icons.edit),
               ),
               IconButton.outlined(
                 onPressed: () {},
-                icon: Icon(Icons.delete),
+                icon: const Icon(Icons.delete),
               )
             ],
           ),

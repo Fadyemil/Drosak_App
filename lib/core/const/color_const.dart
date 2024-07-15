@@ -1,5 +1,7 @@
 import 'dart:ui';
 
+const KEdStBox = 'ed_st_box';
+
 class ColorConst {
   static const Color kBlackColor = Color(0xff18171C);
   static const Color kPrimaryColor = Color(0xff8012DC);
