@@ -17,106 +17,104 @@ class EdStItemBody extends StatelessWidget {
     Size size = MediaQuery.of(context).size;
     List<EdStModel>? Data = context.read<EdStCubit>().notes;
     return Container(
-        margin: EdgeInsets.all(8),
-        width: size.width,
-        height: size.height * 0.16,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(12),
-          border: Border.all(color: ColorConst.kPrimaryColor),
+      margin: const EdgeInsets.all(8),
+      width: size.width,
+      height: size.height * 0.16,
+      decoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: ColorConst.kPrimaryColor),
+      ),
+      child: Slidable(
+        endActionPane: ActionPane(
+          motion: const ScrollMotion(),
+          children: [
+            SlidableAction(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              onPressed: onPressedEdit,
+              backgroundColor: const Color(0xFF7BC043),
+              foregroundColor: Colors.white,
+              icon: Icons.edit,
+              label: 'edid',
+              autoClose: true,
+            ),
+            const SizedBox(width: 3),
+            SlidableAction(
+              borderRadius: const BorderRadius.all(Radius.circular(8)),
+              onPressed: onPressedDelete,
+              backgroundColor: const Color.fromARGB(255, 59, 45, 192),
+              foregroundColor: Colors.white,
+              icon: Icons.delete,
+              label: 'delete',
+              autoClose: true,
+            ),
+          ],
         ),
-        child: Slidable(
-          endActionPane: const ActionPane(
-            motion: ScrollMotion(),
+        child: ListTile(
+          title: Text(
+            Data?[index].title ?? 'no title',
+            style: const TextStyle(
+              color: ColorConst.kWhiteColor,
+              fontSize: 18,
+              fontWeight: FontWeight.bold,
+              letterSpacing: 1.2,
+            ),
+          ),
+          subtitle: Text(
+            Data?[index].subtitle ?? 'No data',
+            textScaler: const TextScaler.linear(1),
+            softWrap: false,
+            maxLines: 3,
+            overflow: TextOverflow.ellipsis,
+            style: TextStyle(
+              color: ColorConst.kWhiteColor.withOpacity(0.5),
+              fontSize: 14,
+            ),
+          ),
+          trailing: Row(
+            mainAxisSize: MainAxisSize.min,
             children: [
-              SlidableAction(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                onPressed: null,
-                backgroundColor: Color(0xFF7BC043),
-                foregroundColor: Colors.white,
-                icon: Icons.edit,
-                label: 'edid',
-                autoClose: true,
-              ),
-              SizedBox(
-                width: 3,
-              ),
-              SlidableAction(
-                borderRadius: BorderRadius.all(Radius.circular(8)),
-                onPressed: null,
-                backgroundColor: Color.fromARGB(255, 59, 45, 192),
-                foregroundColor: Colors.white,
-                icon: Icons.delete,
-                label: 'delete',
-                autoClose: true,
+              IconButton.filledTonal(
+                onPressed: () {
+                  onPressedEdit(context);
+                },
+                icon: const Icon(Icons.edit),
               ),
             ],
           ),
-          child: ListTile(
-            title: Text(
-              Data?[index].title ?? 'no title',
-              style: TextStyle(
-                color: ColorConst.kWhiteColor,
-                fontSize: 18,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1.2,
-              ),
-            ),
-            subtitle: Text(
-              Data?[index].subtitle ?? 'No data',
-              textScaler: const TextScaler.linear(1),
-              softWrap: false,
-              maxLines: 3,
-              overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: ColorConst.kWhiteColor.withOpacity(0.5),
-                fontSize: 14,
-              ),
-            ),
-            trailing: Row(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                IconButton.filledTonal(
-                  onPressed: () {
-                    showModalBottomSheet(
-                      backgroundColor: Color.fromARGB(255, 16, 112, 124),
-                      isScrollControlled: true,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(16),
-                      ),
-                      context: context,
-                      builder: (context) {
-                        return GestureDetector(
-                            onTap: () {
-                              FocusScope.of(context).unfocus();
-                            },
-                            child: Container(
-                              // height: size.height * 0.52,
-                              child: EditEdStView(
-                                edStModel: edStModel,
-                              ),
-                            ));
-                      },
-                    );
-                  },
-                  icon: const Icon(Icons.edit),
-                ),
-                IconButton.outlined(
-                  onPressed: () {
-                    onPressed(context);
-                  },
-                  icon: const Icon(Icons.delete),
-                )
-              ],
-            ),
-          ),
-        ));
+        ),
+      ),
+    );
   }
 
-  void onPressed(BuildContext context) {
+  void onPressedEdit(BuildContext context) {
+    showModalBottomSheet(
+      backgroundColor: const Color.fromARGB(255, 16, 112, 124),
+      isScrollControlled: true,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      context: context,
+      builder: (context) {
+        return GestureDetector(
+          onTap: () {
+            FocusScope.of(context).unfocus();
+          },
+          child: Container(
+            // height: size.height * 0.52,
+            child: EditEdStView(
+              edStModel: edStModel,
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  void onPressedDelete(BuildContext context) {
     edStModel.delete();
     context.read<EdStCubit>().fetchAllEdSt();
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
+      const SnackBar(
         content: Center(child: Text('Delete this is Stage')),
       ),
     );

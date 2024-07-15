@@ -13,7 +13,7 @@ class EditEdStView extends StatelessWidget {
           left: 16,
           right: 16,
           bottom: MediaQuery.of(context).viewInsets.bottom),
-      child: EditEdStBody(edStModel: edStModel),
+      child: EditEdStBody(edStModel: edStModel)
     );
   }
 }

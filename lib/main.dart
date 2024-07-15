@@ -1,8 +1,10 @@
+import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/business_logic_layer/select_page/select_page_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/presentation_layer/screen/appPage.dart';
+import 'package:drosak/presentation_layer/widget/home_widget/splash_screen.dart';
 // import 'package:drosak/presentation_layer/screen/home_app_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -40,7 +42,11 @@ class MyApp extends StatelessWidget {
           colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
           useMaterial3: true,
         ),
-        home: const ApplicationPage(),
+        home: AnimatedSplashScreen(
+            splashIconSize: MediaQuery.sizeOf(context).height,
+            splashTransition: SplashTransition.fadeTransition,
+            splash: SplashScreen(),
+            nextScreen: const ApplicationPage()),
       ),
     );
   }
