@@ -15,6 +15,7 @@ class EdStAddCubit extends Cubit<EdStAddState> {
       var EdStBox = Hive.box<EdStModel>(KEdStBox);
       await EdStBox.add(edSt);
       emit(EdStAddSuccess());
+      print(EdStBox.length);
     } catch (e) {
       emit(
         EdStAddFailure(errorMessage: e.toString()),

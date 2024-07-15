@@ -1,8 +1,11 @@
 // ignore_for_file: unused_local_variable
 
+import 'package:drosak/business_logic_layer/ed_st_add/ed_st_add_cubit.dart';
+import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_botton.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_text_filed.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AddEdStForm extends StatefulWidget {
   const AddEdStForm({super.key});
@@ -46,13 +49,22 @@ class _AddEdStFormState extends State<AddEdStForm> {
           const SizedBox(
             height: 32,
           ),
-          CustomButton(
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-              } else {
-                setState(() {});
-              }
+          BlocBuilder<EdStAddCubit, EdStAddState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is EdStAddLoading ? true : false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    var edStModel =
+                        EdStModel(title: title!, subtitle: subTitle!);
+                    context.read<EdStAddCubit>().addEdSt(edStModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
           ),
           const SizedBox(
