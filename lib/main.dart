@@ -3,6 +3,7 @@ import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/business_logic_layer/select_page/select_page_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
+import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:drosak/presentation_layer/screen/appPage.dart';
 import 'package:drosak/presentation_layer/widget/home_widget/splash_screen.dart';
 // import 'package:drosak/presentation_layer/screen/home_app_screen.dart';
@@ -13,7 +14,9 @@ import 'package:hive_flutter/adapters.dart';
 void main() async {
   await Hive.initFlutter();
   Hive.registerAdapter(EdStModelAdapter());
+  Hive.registerAdapter(GroubModelAdapter());
   await Hive.openBox<EdStModel>(KEdStBox);
+  await Hive.openBox<GroubModel>(KGroubBox);
   runApp(const MyApp());
 }
 
