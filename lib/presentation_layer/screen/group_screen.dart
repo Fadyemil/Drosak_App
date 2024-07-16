@@ -1,3 +1,4 @@
+import 'package:drosak/presentation_layer/widget/groub_widget.dart/groub_body.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget.dart/groub_botton_sheet.dart';
 import 'package:drosak/presentation_layer/widget/home_widget/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -31,6 +32,7 @@ class GroupScreen extends StatelessWidget {
             );
           },
         ),
+        Expanded(child: GroubBody()),
       ],
     ));
   }

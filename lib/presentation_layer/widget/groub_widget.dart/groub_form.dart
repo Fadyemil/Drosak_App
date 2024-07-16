@@ -41,7 +41,7 @@ class _GroubFormState extends State<GroubForm> {
     'Saturday',
   ];
 
-  String? selectedValueLevel, day, nameGroub, subtitle;
+  String? selectedValueLevel, day, nameGroub, subtitle, numberStudent;
 
   TimeOfDay? time;
   void _showTimePicker() {
@@ -139,6 +139,13 @@ class _GroubFormState extends State<GroubForm> {
                 formattedTime: _formatTime(time),
               ),
             ],
+          ),
+          SizedBox(height: 15),
+          CustomTextField(
+            hint: ' enter number of students',
+            onSaved: (value) {
+              numberStudent = value;
+            },
           ),
           SizedBox(height: 15),
           CustomTextField(
