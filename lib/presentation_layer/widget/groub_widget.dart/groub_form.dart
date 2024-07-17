@@ -147,6 +147,7 @@ class _GroubFormState extends State<GroubForm> {
           ),
           SizedBox(height: 15),
           CustomTextField(
+            keyboardType: TextInputType.number,
             hint: ' enter number of students',
             onSaved: (value) {
               numberStudent = value;

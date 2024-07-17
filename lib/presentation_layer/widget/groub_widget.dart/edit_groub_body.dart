@@ -9,6 +9,7 @@ import 'package:drosak/presentation_layer/widget/groub_widget.dart/title_widget.
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_text_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
 class EditGroubBody extends StatefulWidget {
   const EditGroubBody({super.key, required this.groubModel});
@@ -44,14 +45,29 @@ class _EditGroubBodyState extends State<EditGroubBody> {
     'Saturday',
   ];
 
-  String? selectedValueLevel, day, nameGroub, subtitle, numberStudent;
+  @override
+  void initState() {
+    super.initState();
+    day = daysOfWeek.contains(widget.groubModel.day)
+        ? widget.groubModel.day
+        : null;
+    ed_Level = educationalLevel.contains(widget.groubModel.edLevel)
+        ? widget.groubModel.edLevel
+        : null;
+    if (widget.groubModel.timePacker != null) {
+      final time = DateFormat.jm().parse(widget.groubModel.timePacker ?? '');
+      this.time = TimeOfDay(hour: time.hour, minute: time.minute);
+    }
+  }
+
+  String? ed_Level, day, nameGroub, subtitle, numberStudent;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   TimeOfDay? time;
   void _showTimePicker() {
     showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(),
+      initialTime: time ?? TimeOfDay.now(),
     ).then((value) {
       setState(() {
         time = value;
@@ -100,10 +116,12 @@ class _EditGroubBodyState extends State<EditGroubBody> {
                   child: DropdownField(
                     hint: 'Choose the educational stage',
                     items: educationalLevel,
-                    selectedValue: selectedValueLevel,
+                    selectedValue: ed_Level,
                     onChanged: (value) {
                       setState(() {
-                        selectedValueLevel = value;
+                        ed_Level = value;
+                        widget.groubModel.edLevel =
+                            value ?? widget.groubModel.edLevel;
                       });
                     },
                   ),
@@ -125,6 +143,7 @@ class _EditGroubBodyState extends State<EditGroubBody> {
                     onChanged: (value) {
                       setState(() {
                         day = value;
+                        widget.groubModel.day = value ?? widget.groubModel.day;
                       });
                     },
                   ),
@@ -147,6 +166,7 @@ class _EditGroubBodyState extends State<EditGroubBody> {
           ),
           SizedBox(height: 15),
           CustomTextField(
+            keyboardType: TextInputType.number,
             onChanged: (value) {
               numberStudent = value;
             },
@@ -169,6 +189,10 @@ class _EditGroubBodyState extends State<EditGroubBody> {
                   subtitle ?? widget.groubModel.subtitle;
               widget.groubModel.numberStudent =
                   numberStudent ?? widget.groubModel.numberStudent;
+              widget.groubModel.timePacker = time != null
+                  ? _formatTime(time)
+                  : widget.groubModel.timePacker;
+
               widget.groubModel.save();
               BlocProvider.of<GroubCubit>(context).fetchAllGroub();
               Navigator.pop(context);

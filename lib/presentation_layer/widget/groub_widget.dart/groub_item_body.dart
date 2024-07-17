@@ -145,7 +145,7 @@ class Table extends StatelessWidget {
         DataColumn2(
           label: Center(
             child: Text(
-              'Column A',
+              'number 👨‍💼',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -172,7 +172,7 @@ class Table extends StatelessWidget {
         DataColumn2(
           label: Center(
             child: Text(
-              'number 👨‍💼',
+              'Group time 📗',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -183,10 +183,10 @@ class Table extends StatelessWidget {
         1,
         (index) => DataRow(
           cells: [
-            const DataCell(Center(
+            DataCell(Center(
               child: Text(
-                'A',
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                groubModel.numberStudent ?? 'number studen',
+                style: const TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
@@ -201,10 +201,10 @@ class Table extends StatelessWidget {
                 style: const TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
-            DataCell(Center(
+            const DataCell(Center(
               child: Text(
-                groubModel.numberStudent ?? 'number studen',
-                style: const TextStyle(color: ColorConst.kWhiteColor),
+                '👈 👈',
+                style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
           ],

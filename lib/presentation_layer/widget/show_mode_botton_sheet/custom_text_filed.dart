@@ -12,6 +12,7 @@ class CustomTextField extends StatelessWidget {
       this.maxLines = 1,
       this.onSaved,
       this.onChanged,
+      this.keyboardType,
       this.initialValue});
 
   String? hint;
@@ -19,12 +20,14 @@ class CustomTextField extends StatelessWidget {
   final int maxLines;
   String? initialValue;
   final void Function(String?)? onSaved;
+  final TextInputType? keyboardType;
 
   final Function(String)? onChanged;
   @override
   Widget build(BuildContext context) {
     return TextFormField(
       initialValue: initialValue,
+      keyboardType: keyboardType,
       onChanged: onChanged,
       onSaved: onSaved,
       validator: (value) {
