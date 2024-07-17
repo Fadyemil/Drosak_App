@@ -10,41 +10,38 @@ class GroubBottonSheet extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     // Size size = MediaQuery.sizeOf(context);
-    return BlocProvider(
-      create: (context) => GroubAddCubit(),
-      child: BlocConsumer<GroubAddCubit, GroubAddState>(
-        listener: (context, state) {
-          if (state is GroubAddFailure) {
-            ScaffoldMessenger.of(context).showSnackBar(
-              SnackBar(
-                content: Text('Error ${state.errorMessage}'),
-              ),
-            );
-          }
-          if (state is GroubAddLoading) {
-            const Center(
-              child: CircularProgressIndicator(),
-            );
-          }
-          if (state is GroubaddSuccess) {
-            context.read<GroubCubit>().fetchAllGroub();
-            Navigator.pop(context);
-          }
-        },
-        builder: (context, state) {
-          return AbsorbPointer(
-            absorbing: state is GroubAddLoading ? true : false,
-            child: Padding(
-              padding: EdgeInsets.only(
-                left: 16,
-                right: 16,
-                bottom: MediaQuery.of(context).viewInsets.bottom,
-              ),
-              child: SingleChildScrollView(child: GroubForm()),
+    return BlocConsumer<GroubAddCubit, GroubAddState>(
+      listener: (context, state) {
+        if (state is GroubAddFailure) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            SnackBar(
+              content: Text('Error ${state.errorMessage}'),
             ),
           );
-        },
-      ),
+        }
+        if (state is GroubAddLoading) {
+          const Center(
+            child: CircularProgressIndicator(),
+          );
+        }
+        if (state is GroubaddSuccess) {
+          context.read<GroubCubit>().fetchAllGroub();
+          Navigator.pop(context);
+        }
+      },
+      builder: (context, state) {
+        return AbsorbPointer(
+          absorbing: state is GroubAddLoading ? true : false,
+          child: Padding(
+            padding: EdgeInsets.only(
+              left: 16,
+              right: 16,
+              bottom: MediaQuery.of(context).viewInsets.bottom,
+            ),
+            child: SingleChildScrollView(child: GroubForm()),
+          ),
+        );
+      },
     );
   }
 }
