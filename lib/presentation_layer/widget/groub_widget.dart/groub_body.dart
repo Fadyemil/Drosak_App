@@ -6,7 +6,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GroubBody extends StatefulWidget {
-  const GroubBody({super.key});
+  const GroubBody({super.key, required this.scrollController});
+  final ScrollController scrollController;
 
   @override
   State<GroubBody> createState() => _GroubBodyState();
@@ -32,6 +33,7 @@ class _GroubBodyState extends State<GroubBody> {
             SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
+                controller: widget.scrollController,
                 itemCount: Data?.length ?? 0,
                 itemBuilder: (context, index) {
                   return GroubItemBody(

@@ -1,9 +1,9 @@
-import 'package:drosak/data_layer/models/ed_st_model.dart';
+import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:flutter/material.dart';
 
-class CustomSearchDelegateEdStScreen extends SearchDelegate {
-  List<EdStModel> searchTerms;
-  CustomSearchDelegateEdStScreen({
+class CustomSearchDelegateGroupScreen extends SearchDelegate {
+  List<GroubModel> searchTerms;
+  CustomSearchDelegateGroupScreen({
     required this.searchTerms,
     required this.scrollController,
   });
@@ -32,12 +32,12 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
   @override
   Widget buildResults(BuildContext context) {
     // Create an empty list to store the matched search results
-    List<EdStModel> matchQuery = [];
+    List<GroubModel> matchQuery = [];
 
     // Iterate over each item in the searchTerms list
     for (var stage in searchTerms) {
       // Check if the item's title contains the search query (case insensitive)
-      if (stage.title.toLowerCase().contains(query.toLowerCase())) {
+      if (stage.nameGroub!.toLowerCase().contains(query.toLowerCase())) {
         // If it matches, add the item to the matchQuery list
         matchQuery.add(stage);
       }
@@ -53,7 +53,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
         // Return a ListTile to display the result
         return ListTile(
           title: Text(
-            result.title,
+            result.nameGroub!,
             style: const TextStyle(
               color: Colors.white,
             ),
@@ -61,7 +61,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
           onTap: () {
             int position = searchTerms.indexOf(result);
             scrollController.animateTo(
-              position * MediaQuery.sizeOf(context).height * .15,
+              position * MediaQuery.sizeOf(context).height * .35,
               duration: const Duration(seconds: 1),
               curve: Curves.easeInOut,
             );
@@ -76,9 +76,9 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
 
   @override
   Widget buildSuggestions(BuildContext context) {
-    List<EdStModel> matchQuery = [];
+    List<GroubModel> matchQuery = [];
     for (var stage in searchTerms) {
-      if (stage.title.toLowerCase().contains(query.toLowerCase())) {
+      if (stage.nameGroub!.toLowerCase().contains(query.toLowerCase())) {
         matchQuery.add(stage);
       }
     }
@@ -88,7 +88,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
         var result = matchQuery[index];
         return ListTile(
           title: Text(
-            result.title,
+            result.nameGroub!,
             style: TextStyle(
               color: Colors.white,
             ),
@@ -96,7 +96,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
           onTap: () {
             int position = searchTerms.indexOf(result);
             scrollController.animateTo(
-              position * MediaQuery.sizeOf(context).height * .15,
+              position * MediaQuery.sizeOf(context).height * .35,
               duration: const Duration(seconds: 1),
               curve: Curves.easeInOut,
             );
