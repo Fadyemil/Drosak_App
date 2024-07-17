@@ -9,7 +9,7 @@ part 'groub_state.dart';
 class GroubCubit extends Cubit<GroubState> {
   GroubCubit() : super(GroubInitial());
   List<GroubModel>? GroubList;
-  fetchAllEdSt() {
+  fetchAllGroub() {
     var GroubBox = Hive.box<GroubModel>(KGroubBox);
     GroubList = GroubBox.values.toList();
     emit(GroubSucess());

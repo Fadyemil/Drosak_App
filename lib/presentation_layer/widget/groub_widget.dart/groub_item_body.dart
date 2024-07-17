@@ -1,9 +1,12 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:flutter/material.dart';
 
 class GroubItemBody extends StatelessWidget {
-  const GroubItemBody({super.key});
+  const GroubItemBody({super.key, required this.groubModel});
+
+  final GroubModel groubModel;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +24,7 @@ class GroubItemBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            'groub 1 / groun1',
+            "${groubModel.edLevel} / ${groubModel.nameGroub}",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w800,
@@ -30,15 +33,13 @@ class GroubItemBody extends StatelessWidget {
           ),
           SizedBox(height: 6),
           Expanded(
-            child: Table(),
+            child: Table(
+              groubModel: groubModel,
+            ),
           ),
           SizedBox(height: 12),
           Text(
-            '''
-No data No data No data No dataNo data No dataNo data No dataNo data No dataNo data No dataNo data No data
-No data No data
-No data No data No data No dataNo data No dataNo data No dataNo data No dataNo data No data
-            ''',
+            groubModel.subtitle,
             textScaler: const TextScaler.linear(1),
             softWrap: false,
             maxLines: 3,
@@ -57,7 +58,9 @@ No data No data No data No dataNo data No dataNo data No dataNo data No dataNo d
 class Table extends StatelessWidget {
   const Table({
     super.key,
+    required this.groubModel,
   });
+  final GroubModel groubModel;
 
   @override
   Widget build(BuildContext context) {
@@ -110,7 +113,7 @@ class Table extends StatelessWidget {
       ],
       rows: List<DataRow>.generate(
         1,
-        (index) => const DataRow(
+        (index) => DataRow(
           cells: [
             DataCell(Center(
               child: Text(
@@ -120,19 +123,19 @@ class Table extends StatelessWidget {
             )),
             DataCell(Center(
               child: Text(
-                'A',
+                'groubModel.selectDay',
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                'A',
+                groubModel.timePacker,
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                'A',
+                groubModel.numberStudent,
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),

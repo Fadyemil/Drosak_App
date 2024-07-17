@@ -1,5 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
+import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/business_logic_layer/select_page/select_page_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
@@ -32,6 +33,9 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => EdStCubit(),
+        ),
+       BlocProvider(
+          create: (context) => GroubCubit(),
         ),
       ],
       child: MaterialApp(

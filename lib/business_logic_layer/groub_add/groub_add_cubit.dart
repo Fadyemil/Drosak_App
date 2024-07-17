@@ -8,16 +8,16 @@ part 'groub_add_state.dart';
 
 class GroubAddCubit extends Cubit<GroubAddState> {
   GroubAddCubit() : super(GroubAddInitial());
-  addGroub(GroubModel edSt) async {
-    emit(GroubLoading());
+  addGroub(GroubModel groub) async {
+    emit(GroubAddLoading());
     try {
       var EdStBox = Hive.box<GroubModel>(KGroubBox);
-      await EdStBox.add(edSt);
-      emit(GroubSuccess());
+      await EdStBox.add(groub);
+      emit(GroubaddSuccess());
       print(EdStBox.length);
     } catch (e) {
       emit(
-        GroubFailure(errorMessage: e.toString()),
+        GroubAddFailure(errorMessage: e.toString()),
       );
     }
   }
