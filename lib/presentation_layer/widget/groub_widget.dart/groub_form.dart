@@ -74,6 +74,7 @@ class _GroubFormState extends State<GroubForm> {
   Widget build(BuildContext context) {
     return Form(
       key: formKey,
+      autovalidateMode: autovalidateMode,
       child: Column(
         children: [
           SizedBox(height: 15),
@@ -168,14 +169,14 @@ class _GroubFormState extends State<GroubForm> {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
                     String currentDate = _formatTime(time).toString();
-                    var groubModel = GroubModel(
-                        nameGroub: nameGroub!,
-                        edLevel: selectedValueLevel!,
-                        timePacker: currentDate,
-                        numberStudent: numberStudent!,
-                        subtitle: subtitle!,
-                        // selectDay: 'knkn'
-                        );
+                    GroubModel groubModel = GroubModel(
+                      nameGroub: nameGroub!,
+                      edLevel: selectedValueLevel!,
+                      timePacker: currentDate,
+                      numberStudent: numberStudent!,
+                      subtitle: subtitle!,
+                      day: day!,
+                    );
                     context.read<GroubAddCubit>().addGroub(groubModel);
                   } else {
                     autovalidateMode = AutovalidateMode.always;

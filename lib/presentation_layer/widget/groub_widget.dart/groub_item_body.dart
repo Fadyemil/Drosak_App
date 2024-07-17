@@ -1,16 +1,21 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
-import 'package:drosak/data_layer/models/groub_model.dart';
+// import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GroubItemBody extends StatelessWidget {
-  const GroubItemBody({super.key, required this.groubModel});
+  const GroubItemBody(
+      {super.key, /*required this.groubModel,*/ required this.index});
 
-  final GroubModel groubModel;
+  // final GroubModel groubModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
+    var data = context.read<GroubCubit>().GroubList;
     return Container(
       margin: const EdgeInsets.all(8),
       padding: EdgeInsets.all(8),
@@ -24,7 +29,7 @@ class GroubItemBody extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.end,
         children: [
           Text(
-            "${groubModel.edLevel} / ${groubModel.nameGroub}",
+            "${data?[index].edLevel ?? ''} / ${data?[index].nameGroub ?? ""}",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w800,
@@ -34,12 +39,13 @@ class GroubItemBody extends StatelessWidget {
           SizedBox(height: 6),
           Expanded(
             child: Table(
-              groubModel: groubModel,
+              // groubModel: groubModel,
+              index: index,
             ),
           ),
           SizedBox(height: 12),
           Text(
-            groubModel.subtitle,
+            data?[index].subtitle ?? '',
             textScaler: const TextScaler.linear(1),
             softWrap: false,
             maxLines: 3,
@@ -58,12 +64,15 @@ class GroubItemBody extends StatelessWidget {
 class Table extends StatelessWidget {
   const Table({
     super.key,
-    required this.groubModel,
+    required this.index,
+    // required this.groubModel,
   });
-  final GroubModel groubModel;
+  // final GroubModel groubModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
+    var data = context.read<GroubCubit>().GroubList;
     return DataTable2(
       border: TableBorder.all(
         width: 1,
@@ -123,19 +132,19 @@ class Table extends StatelessWidget {
             )),
             DataCell(Center(
               child: Text(
-                'groubModel.selectDay',
+                data?[index].day ?? '',
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                groubModel.timePacker,
+                data?[index].timePacker ?? '',
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                groubModel.numberStudent,
+                data?[index].numberStudent ?? '100',
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),

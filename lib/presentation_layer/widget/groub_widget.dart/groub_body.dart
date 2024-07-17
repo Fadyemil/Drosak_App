@@ -28,7 +28,8 @@ class _GroubBodyState extends State<GroubBody> {
                 itemCount: 2,
                 itemBuilder: (context, index) {
                   return GroubItemBody(
-                    groubModel: Data![index],
+                    // groubModel: Data![index],
+                    index: index,
                   ).animate().fade(
                         delay: Duration(milliseconds: 250),
                         duration: Duration(milliseconds: 200),
