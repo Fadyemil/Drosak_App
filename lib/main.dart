@@ -13,6 +13,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
   Hive.registerAdapter(EdStModelAdapter());
   Hive.registerAdapter(GroubModelAdapter());
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => EdStCubit(),
         ),
-       BlocProvider(
+        BlocProvider(
           create: (context) => GroubCubit(),
         ),
       ],

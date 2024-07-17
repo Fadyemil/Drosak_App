@@ -4,18 +4,18 @@ import 'package:hive/hive.dart';
 part 'groub_model.g.dart';
 @HiveType(typeId: 1)
 class GroubModel extends HiveObject {
+  @HiveField(0)
+  String? nameGroub;
   @HiveField(1)
-  String nameGroub;
+  String? edLevel;
   @HiveField(2)
-  String edLevel;
+  String? day;
   @HiveField(3)
-  String day;
+  String? timePacker;
   @HiveField(4)
-  String timePacker;
+  String? numberStudent;
   @HiveField(5)
-  String numberStudent;
-  @HiveField(6)
-  String subtitle;
+  String? subtitle;
   GroubModel({
     required this.nameGroub,
     required this.edLevel,

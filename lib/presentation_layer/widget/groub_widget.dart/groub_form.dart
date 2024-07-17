@@ -168,16 +168,18 @@ class _GroubFormState extends State<GroubForm> {
                 onTap: () {
                   if (formKey.currentState!.validate()) {
                     formKey.currentState!.save();
-                    String currentDate = _formatTime(time).toString();
+                    // String currentDate = _formatTime(time).toString();
                     GroubModel groubModel = GroubModel(
                       nameGroub: nameGroub!,
                       edLevel: selectedValueLevel!,
-                      timePacker: currentDate,
+                      day: day!,
+                      timePacker: _formatTime(time),
                       numberStudent: numberStudent!,
                       subtitle: subtitle!,
-                      day: day!,
                     );
                     context.read<GroubAddCubit>().addGroub(groubModel);
+                    print(_formatTime(time));
+                    print(day);
                   } else {
                     autovalidateMode = AutovalidateMode.always;
                     setState(() {});

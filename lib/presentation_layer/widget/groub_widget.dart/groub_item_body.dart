@@ -1,15 +1,16 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/groub_model.dart';
 // import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class GroubItemBody extends StatelessWidget {
   const GroubItemBody(
-      {super.key, /*required this.groubModel,*/ required this.index});
+      {super.key, required this.groubModel, required this.index});
 
-  // final GroubModel groubModel;
+  final GroubModel groubModel;
   final int index;
 
   @override
@@ -39,8 +40,7 @@ class GroubItemBody extends StatelessWidget {
           SizedBox(height: 6),
           Expanded(
             child: Table(
-              // groubModel: groubModel,
-              index: index,
+              groubModel: groubModel,
             ),
           ),
           SizedBox(height: 12),
@@ -64,15 +64,12 @@ class GroubItemBody extends StatelessWidget {
 class Table extends StatelessWidget {
   const Table({
     super.key,
-    required this.index,
-    // required this.groubModel,
+    required this.groubModel,
   });
-  // final GroubModel groubModel;
-  final int index;
+  final GroubModel groubModel;
 
   @override
   Widget build(BuildContext context) {
-    var data = context.read<GroubCubit>().GroubList;
     return DataTable2(
       border: TableBorder.all(
         width: 1,
@@ -124,7 +121,7 @@ class Table extends StatelessWidget {
         1,
         (index) => DataRow(
           cells: [
-            DataCell(Center(
+            const DataCell(Center(
               child: Text(
                 'A',
                 style: TextStyle(color: ColorConst.kWhiteColor),
@@ -132,20 +129,20 @@ class Table extends StatelessWidget {
             )),
             DataCell(Center(
               child: Text(
-                data?[index].day ?? '',
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                groubModel.day ?? 'day',
+                style: const TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                data?[index].timePacker ?? '',
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                groubModel.timePacker ?? 'time',
+                style: const TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                data?[index].numberStudent ?? '100',
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                groubModel.numberStudent ?? 'number studen',
+                style: const TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
           ],

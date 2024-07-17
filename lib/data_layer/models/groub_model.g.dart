@@ -17,12 +17,12 @@ class GroubModelAdapter extends TypeAdapter<GroubModel> {
       for (int i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return GroubModel(
-      nameGroub: fields[1] as String? ?? "",
-      edLevel: fields[2] as String? ?? "",
-      day: fields[3] as String? ?? "",
-      timePacker: fields[4] as String? ?? "",
-      numberStudent: fields[5] as String? ?? "",
-      subtitle: fields[6] as String? ?? "",
+      nameGroub: fields[0] as String?,
+      edLevel: fields[1] as String?,
+      day: fields[2] as String?,
+      timePacker: fields[3] as String?,
+      numberStudent: fields[4] as String?,
+      subtitle: fields[5] as String?,
     );
   }
 
@@ -30,17 +30,17 @@ class GroubModelAdapter extends TypeAdapter<GroubModel> {
   void write(BinaryWriter writer, GroubModel obj) {
     writer
       ..writeByte(6)
-      ..writeByte(1)
+      ..writeByte(0)
       ..write(obj.nameGroub)
-      ..writeByte(2)
+      ..writeByte(1)
       ..write(obj.edLevel)
-      ..writeByte(3)
+      ..writeByte(2)
       ..write(obj.day)
-      ..writeByte(4)
+      ..writeByte(3)
       ..write(obj.timePacker)
-      ..writeByte(5)
+      ..writeByte(4)
       ..write(obj.numberStudent)
-      ..writeByte(6)
+      ..writeByte(5)
       ..write(obj.subtitle);
   }
 

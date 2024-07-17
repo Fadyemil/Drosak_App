@@ -14,6 +14,13 @@ class GroubBody extends StatefulWidget {
 
 class _GroubBodyState extends State<GroubBody> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<GroubCubit>().fetchAllGroub();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<GroubCubit, GroubState>(
       builder: (context, state) {
@@ -25,10 +32,10 @@ class _GroubBodyState extends State<GroubBody> {
             SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                itemCount: 2,
+                itemCount: Data?.length ?? 0,
                 itemBuilder: (context, index) {
                   return GroubItemBody(
-                    // groubModel: Data![index],
+                    groubModel: Data![index],
                     index: index,
                   ).animate().fade(
                         delay: Duration(milliseconds: 250),
