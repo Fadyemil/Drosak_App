@@ -6,6 +6,7 @@ import 'package:drosak/business_logic_layer/select_page/select_page_cubit.dart';
 import 'package:drosak/business_logic_layer/student/student_cubit.dart';
 import 'package:drosak/business_logic_layer/student_add/student_add_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/audience_model.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:drosak/data_layer/models/student_model.dart';
@@ -22,9 +23,11 @@ void main() async {
   Hive.registerAdapter(EdStModelAdapter());
   Hive.registerAdapter(GroubModelAdapter());
   Hive.registerAdapter(StudentModelAdapter());
+  Hive.registerAdapter(AudienceModelAdapter());
   await Hive.openBox<EdStModel>(KEdStBox);
   await Hive.openBox<GroubModel>(KGroubBox);
   await Hive.openBox<StudentModel>(KStudentBox);
+  await Hive.openBox<StudentModel>(KAudienceBox);
   runApp(const MyApp());
 }
 

@@ -3,6 +3,7 @@ import 'dart:ui';
 const KEdStBox = 'ed_st_box';
 const KGroubBox = 'groub_box';
 const KStudentBox = 'Student_box';
+const KAudienceBox = 'Audience_box';
 
 class ColorConst {
   static const Color kBlackColor = Color(0xff18171C);
