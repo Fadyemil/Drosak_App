@@ -72,13 +72,17 @@ class StudentItemBody extends StatelessWidget {
                 stModel: stModel,
               ),
             ),
-            Center(
-              child: Text(
-                '🤙 ${stModel.numberPhoneStudent}',
-                style: TextStyle(
-                  fontSize: 16,
-                  fontWeight: FontWeight.w800,
-                  color: Colors.white,
+            SizedBox(
+              height: 18,
+              child: Center(
+                child: Text(
+                  textAlign: TextAlign.center,
+                  '🤙 ${stModel.numberPhoneStudent}',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w800,
+                    color: Colors.white,
+                  ),
                 ),
               ),
             ),
