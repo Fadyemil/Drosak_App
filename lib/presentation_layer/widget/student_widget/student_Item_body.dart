@@ -1,10 +1,13 @@
 import 'package:data_table_2/data_table_2.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/student_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class StudentItemBody extends StatelessWidget {
-  const StudentItemBody({super.key});
+  const StudentItemBody({super.key, required this.stModel});
+
+  final StudentModel stModel;
 
   @override
   Widget build(BuildContext context) {
@@ -46,9 +49,8 @@ class StudentItemBody extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.end,
           children: [
-            const Text(
-              // "${data?[index].edLevel ?? ''} / ${data?[index].nameGroub ?? ""}",
-              'name Student',
+            Text(
+              stModel.nameStudent,
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
@@ -56,9 +58,8 @@ class StudentItemBody extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 6),
-            const Text(
-              // "${data?[index].edLevel ?? ''} / ${data?[index].nameGroub ?? ""}",
-              'صف الاول الاعدادي /   المجموعة الأولي',
+            Text(
+              '  ${stModel.selectGrouP}/ ${stModel.eductionalLevel}',
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
@@ -68,13 +69,12 @@ class StudentItemBody extends StatelessWidget {
             const SizedBox(height: 6),
             Expanded(
               child: StudentTable(
-                  // groubModel: groubModel,
-                  ),
+                stModel: stModel,
+              ),
             ),
             Center(
-              child: const Text(
-                // "${data?[index].edLevel ?? ''} / ${data?[index].nameGroub ?? ""}",
-                '🤙 011533348583',
+              child: Text(
+                '🤙 ${stModel.numberPhoneStudent}',
                 style: TextStyle(
                   fontSize: 16,
                   fontWeight: FontWeight.w800,
@@ -84,8 +84,7 @@ class StudentItemBody extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Text(
-              // data?[index].subtitle ??
-              "Student's level",
+              "${stModel.subtitle}",
               textScaler: const TextScaler.linear(1),
               softWrap: false,
               maxLines: 3,
@@ -140,9 +139,9 @@ class StudentItemBody extends StatelessWidget {
 class StudentTable extends StatelessWidget {
   const StudentTable({
     super.key,
-    // required this.groubModel,
+    required this.stModel,
   });
-  // final GroubModel groubModel;
+  final StudentModel stModel;
 
   @override
   Widget build(BuildContext context) {
@@ -159,7 +158,7 @@ class StudentTable extends StatelessWidget {
         DataColumn2(
           label: Center(
             child: Text(
-              'number 👨‍💼',
+              'date of registration',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -195,26 +194,23 @@ class StudentTable extends StatelessWidget {
       ],
       rows: List<DataRow>.generate(
         1,
-        (index) => const DataRow(
+        (index) => DataRow(
           cells: [
             DataCell(Center(
               child: Text(
-                // groubModel.numberStudent ??
-                'number studen',
+                stModel.dateRegistration,
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                // groubModel.day ??
-                'day',
+                stModel.day,
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
               child: Text(
-                // groubModel.timePacker ??
-                'time',
+                stModel.TimePicker,
                 style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),

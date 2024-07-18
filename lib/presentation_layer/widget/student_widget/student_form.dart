@@ -1,8 +1,10 @@
 // ignore_for_file: unused_local_variable, non_constant_identifier_names
 
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
+import 'package:drosak/business_logic_layer/student_add/student_add_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
+import 'package:drosak/data_layer/models/student_model.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget.dart/dropdown_field.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget.dart/select_time_widget.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget.dart/title_widget.dart';
@@ -213,33 +215,33 @@ class _StudentFormState extends State<StudentForm> {
             maxLines: 3,
           ),
           const SizedBox(height: 15),
-          // BlocBuilder<GroubAddCubit, GroubAddState>(
-          // builder: (context, state) {
-          // return
-          CustomButton(
-            // isLoading: state is GroubAddLoading ? true : false,
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                // String currentDate = _formatTime(time).toString();
-                // GroubModel groubModel = GroubModel(
-                //   nameGroub: nameGroub!,
-                //   edLevel: selectedValueLevel!,
-                //   day: day!,
-                //   timePacker: _formatTime(time),
-                //   numberStudent: numberStudent!,
-                //   subtitle: subtitle!,
-                // );
-                // context.read<GroubAddCubit>().addGroub(groubModel);
-                print(_formatTime(time));
-                print(day);
-              } else {
-                autovalidateMode = AutovalidateMode.always;
-                setState(() {});
-              }
+          BlocBuilder<StudentAddCubit, StudentAddState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is StudentAddLoading ? true : false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    // String currentDate = _formatTime(time).toString();
+                    StudentModel studentModel = StudentModel(
+                        nameStudent: nameStudent!,
+                        eductionalLevel: selectedValueLevel!,
+                        selectGrouP: Select_group!,
+                        day: day!,
+                        TimePicker: _formatTime(time),
+                        numberPhoneStudent: numberPhoneStudent!,
+                        dateRegistration: date_reg!,
+                        subtitle: subtitle!);
+                    context.read<StudentAddCubit>().addStundent(studentModel);
+                    print(_formatTime(time));
+                    print(day);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
-            // );
-            // },
           ),
         ],
       ),
