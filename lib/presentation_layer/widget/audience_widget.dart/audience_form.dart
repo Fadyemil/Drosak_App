@@ -14,6 +14,7 @@ class _AudienceFormState extends State<AudienceForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
   int? numberStudent, sharePrice, total;
+  String? InputName;
 
   @override
   Widget build(BuildContext context) {
@@ -22,6 +23,20 @@ class _AudienceFormState extends State<AudienceForm> {
       autovalidateMode: autovalidateMode,
       child: Column(
         children: [
+          const SizedBox(height: 15),
+          Container(
+            decoration: BoxDecoration(
+              color: ColorConst.kWhiteColor.withGreen(180),
+              borderRadius: BorderRadius.circular(14),
+            ),
+            child: CustomTextField(
+              keyboardType: TextInputType.name,
+              onSaved: (value) {
+                InputName = value;
+              },
+              hint: 'Enter the Input name',
+            ),
+          ),
           const SizedBox(height: 15),
           Container(
             decoration: BoxDecoration(

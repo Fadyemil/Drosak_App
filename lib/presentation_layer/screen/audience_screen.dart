@@ -1,3 +1,4 @@
+import 'package:drosak/presentation_layer/widget/audience_widget.dart/audience_body.dart';
 import 'package:drosak/presentation_layer/widget/audience_widget.dart/audience_botton_sheet.dart';
 import 'package:drosak/presentation_layer/widget/home_widget/app_bar.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class AudienceScreen extends StatelessWidget {
         children: [
           AppBarApp(
             text: 'Audience',
-            add: (){
+            add: () {
               showModalBottomSheet(
                 backgroundColor: Color.fromARGB(255, 16, 112, 124),
                 isScrollControlled: true,
@@ -31,6 +32,9 @@ class AudienceScreen extends StatelessWidget {
                 },
               );
             },
+          ),
+          Expanded(
+            child: AudienceBody(),
           ),
         ],
       ),
