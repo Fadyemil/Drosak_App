@@ -209,8 +209,8 @@ class _StudentFormState extends State<StudentForm> {
             onSaved: (value) {
               subtitle = value;
             },
-            hint: 'comments',
-            maxLines: 4,
+            hint: "Student's level",
+            maxLines: 3,
           ),
           const SizedBox(height: 15),
           // BlocBuilder<GroubAddCubit, GroubAddState>(
