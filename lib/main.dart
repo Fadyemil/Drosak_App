@@ -1,4 +1,6 @@
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:drosak/business_logic_layer/audience/audience_cubit.dart';
+import 'package:drosak/business_logic_layer/audience_add/audience_add_cubit.dart';
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/business_logic_layer/groub_add/groub_add_cubit.dart';
@@ -27,7 +29,7 @@ void main() async {
   await Hive.openBox<EdStModel>(KEdStBox);
   await Hive.openBox<GroubModel>(KGroubBox);
   await Hive.openBox<StudentModel>(KStudentBox);
-  await Hive.openBox<StudentModel>(KAudienceBox);
+  await Hive.openBox<AudienceModel>(KAudienceBox);
   runApp(const MyApp());
 }
 
@@ -55,6 +57,12 @@ class MyApp extends StatelessWidget {
         ),
         BlocProvider(
           create: (context) => StudentAddCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AudienceCubit(),
+        ),
+        BlocProvider(
+          create: (context) => AudienceAddCubit(),
         ),
       ],
       child: MaterialApp(

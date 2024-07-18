@@ -1,7 +1,12 @@
+// ignore_for_file: unused_local_variable
+
+import 'package:drosak/business_logic_layer/audience_add/audience_add_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/audience_model.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_botton.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_text_filed.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AudienceForm extends StatefulWidget {
   const AudienceForm({super.key});
@@ -66,14 +71,29 @@ class _AudienceFormState extends State<AudienceForm> {
             ),
           ),
           const SizedBox(height: 15),
-          CustomButton(
-            onTap: () {
-              if (formKey.currentState!.validate()) {
-                formKey.currentState!.save();
-                setState(() {
-                  total = (numberStudent ?? 0) * (sharePrice ?? 0);
-                });
-              }
+          BlocBuilder<AudienceAddCubit, AudienceAddState>(
+            builder: (context, state) {
+              return CustomButton(
+                isLoading: state is AudienceAddLoading ? true : false,
+                onTap: () {
+                  if (formKey.currentState!.validate()) {
+                    formKey.currentState!.save();
+                    setState(() {
+                      total = (numberStudent ?? 0) * (sharePrice ?? 0);
+                    });
+                    AudienceModel audienceModel = AudienceModel(
+                      InputName: InputName,
+                      numberStudent: numberStudent,
+                      sharePrice: sharePrice,
+                      totalMoney: total,
+                    );
+                    context.read<AudienceAddCubit>().addAudience(audienceModel);
+                  } else {
+                    autovalidateMode = AutovalidateMode.always;
+                    setState(() {});
+                  }
+                },
+              );
             },
           ),
           const SizedBox(height: 15),

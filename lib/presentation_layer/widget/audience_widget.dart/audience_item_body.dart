@@ -1,9 +1,11 @@
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/models/audience_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class AudienceItemBody extends StatelessWidget {
-  const AudienceItemBody({super.key});
+  const AudienceItemBody({super.key, required this.adModel});
+  final AudienceModel adModel;
 
   @override
   Widget build(BuildContext context) {
@@ -43,21 +45,21 @@ class AudienceItemBody extends StatelessWidget {
             ),
           ],
         ),
-        child: const ListTile(
+        child: ListTile(
           title: Text(
-            'Input name',
+            adModel.InputName.toString(),
             style: TextStyle(
               fontSize: 18,
               fontWeight: FontWeight.w700,
             ),
           ),
           subtitle: Text(
-            '''number of Students = 50
-share price = 45\$
+            '''number of Students = ${adModel.numberStudent}
+share price = ${adModel.sharePrice}\$
             ''',
           ),
           trailing: Text(
-            'total = \$500',
+            'total = \$${adModel.totalMoney}',
             style: TextStyle(
               color: Colors.white,
               fontSize: 16,
