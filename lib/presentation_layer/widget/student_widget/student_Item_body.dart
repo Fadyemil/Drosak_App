@@ -1,7 +1,10 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:drosak/business_logic_layer/student/student_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/student_model.dart';
+import 'package:drosak/presentation_layer/widget/student_widget/edit_student_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class StudentItemBody extends StatelessWidget {
@@ -119,10 +122,9 @@ class StudentItemBody extends StatelessWidget {
           },
           child: Container(
             // height: size.height * 0.52,
-            child: Container(child: Text('data')),
-            // EditGroubView(
-            //   groubModel: groubModel,
-            // ),
+            child: EditStudentView(
+              studentModel: stModel,
+            ),
           ),
         );
       },
@@ -130,8 +132,8 @@ class StudentItemBody extends StatelessWidget {
   }
 
   void onPressedDelete(BuildContext context) {
-    // groubModel.delete();
-    // context.read<GroubCubit>().fetchAllGroub();
+    stModel.delete();
+    context.read<StudentCubit>().fetchAllStudent();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Center(child: Text('Delete this is Stage')),
