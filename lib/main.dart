@@ -109,17 +109,17 @@ class MyApp extends StatelessWidget {
         color: ColorConst.kPrimaryColor,
         titleTextStyle: TextStyle(color: Colors.black), // النص في الـ AppBar
       ),
-      textTheme: TextTheme(
-          // bodyText1: TextStyle(color: Colors.black), // نصوص عادية
-          // bodyText2: TextStyle(color: Colors.black), // نصوص ثانوية
-          // أضف المزيد حسب الحاجة
-          ),
-      colorScheme: ColorScheme.fromSeed(
-        seedColor: Colors.deepPurple,
-        primary: ColorConst.kPrimaryColor,
-        onPrimary: Colors.white,
-        secondary: Colors.deepPurpleAccent,
-      ),
+      // textTheme: TextTheme(
+      //     // bodyText1: TextStyle(color: Colors.black), // نصوص عادية
+      //     // bodyText2: TextStyle(color: Colors.black), // نصوص ثانوية
+      //     // أضف المزيد حسب الحاجة
+      //     ),
+      // colorScheme: ColorScheme.fromSeed(
+      //   seedColor: Colors.deepPurple,
+      //   primary: ColorConst.kPrimaryColor,
+      //   onPrimary: Colors.white,
+      //   secondary: Colors.deepPurpleAccent,
+      // ),
       useMaterial3: true,
     );
   }

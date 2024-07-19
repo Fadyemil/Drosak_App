@@ -15,7 +15,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
           onPressed: () {
             query = '';
           },
-          icon: Icon(Icons.clear))
+          icon: const Icon(Icons.clear))
     ];
   }
 
@@ -25,7 +25,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
       onPressed: () {
         close(context, null);
       },
-      icon: Icon(Icons.arrow_back),
+      icon: const Icon(Icons.arrow_back),
     );
   }
 
@@ -55,7 +55,7 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
           title: Text(
             result.title,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {
@@ -89,8 +89,8 @@ class CustomSearchDelegateEdStScreen extends SearchDelegate {
         return ListTile(
           title: Text(
             result.title,
-            style: TextStyle(
-              color: Colors.white,
+            style: const TextStyle(
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {

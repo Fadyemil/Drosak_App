@@ -1,3 +1,4 @@
+import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
@@ -16,6 +17,9 @@ class EdStItemBody extends StatelessWidget {
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     List<EdStModel>? Data = context.read<EdStCubit>().notes;
+    var themeState = context.watch<AppThemeCubit>().state;
+    bool isDarkMode = themeState is DarkCubit;
+
     return Container(
       margin: const EdgeInsets.all(8),
       width: size.width,
@@ -52,8 +56,8 @@ class EdStItemBody extends StatelessWidget {
         child: ListTile(
           title: Text(
             Data?[index].title ?? 'no title',
-            style: const TextStyle(
-              color: ColorConst.kWhiteColor,
+            style: TextStyle(
+              color: isDarkMode ? ColorConst.kWhiteColor : Colors.black,
               fontSize: 18,
               fontWeight: FontWeight.bold,
               letterSpacing: 1.2,
@@ -66,7 +70,9 @@ class EdStItemBody extends StatelessWidget {
             maxLines: 3,
             overflow: TextOverflow.ellipsis,
             style: TextStyle(
-              color: ColorConst.kWhiteColor.withOpacity(0.5),
+              color: isDarkMode
+                  ? ColorConst.kWhiteColor.withOpacity(0.5)
+                  : Colors.black87,
               fontSize: 14,
             ),
           ),
