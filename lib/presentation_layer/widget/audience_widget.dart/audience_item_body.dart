@@ -1,6 +1,9 @@
+import 'package:drosak/business_logic_layer/audience/audience_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/audience_model.dart';
+import 'package:drosak/presentation_layer/widget/audience_widget.dart/edit_audience_view.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 
 class AudienceItemBody extends StatelessWidget {
@@ -85,19 +88,19 @@ share price = ${adModel.sharePrice}\$
             FocusScope.of(context).unfocus();
           },
           child: Container(
-              // height: size.height * 0.52,
-              // child: EditStudentView(
-              //   studentModel: stModel,
-              // ),
-              ),
+            // height: size.height * 0.52,
+            child: EditAudienceView(
+              audienceModel: adModel,
+            ),
+          ),
         );
       },
     );
   }
 
   void onPressedDelete(BuildContext context) {
-    // stModel.delete();
-    // context.read<StudentCubit>().fetchAllStudent();
+    adModel.delete();
+    context.read<AudienceCubit>().fetchAllAudience();
     ScaffoldMessenger.of(context).showSnackBar(
       const SnackBar(
         content: Center(child: Text('Delete this is Stage')),

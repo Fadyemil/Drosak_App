@@ -14,6 +14,13 @@ class AudienceBody extends StatefulWidget {
 
 class _AudienceBodyState extends State<AudienceBody> {
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    context.read<AudienceCubit>().fetchAllAudience();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return BlocBuilder<AudienceCubit, AudienceState>(
       builder: (context, state) {
