@@ -38,7 +38,7 @@ class _GroupScreenState extends State<GroupScreen> {
           text: 'Groub',
           add: () {
             showModalBottomSheet(
-              backgroundColor: Color.fromARGB(255, 16, 112, 124),
+              backgroundColor: const Color.fromARGB(255, 16, 112, 124),
               isScrollControlled: true,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(16),
@@ -49,7 +49,7 @@ class _GroupScreenState extends State<GroupScreen> {
                   onTap: () {
                     FocusScope.of(context).unfocus();
                   },
-                  child: GroubBottonSheet(),
+                  child: const GroubBottonSheet(),
                 );
               },
             );

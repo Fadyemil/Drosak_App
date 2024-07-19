@@ -33,7 +33,7 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
         backgroundColor: isDarkMode ? ColorConst.kBlackColor : Colors.white,
         color: isDarkMode ? ColorConst.kBlackLight : Colors.white,
         buttonBackgroundColor:
-            isDarkMode ? ColorConst.kWhiteColor : Colors.black,
+            isDarkMode ? ColorConst.kWhiteColor : Colors.blueGrey[600],
         onTap: widget.onItemTapped,
         letIndexChange: (index) => true,
         items: [
@@ -45,7 +45,7 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
                 'assets/images/educational_stages.svg',
                 // color: isDarkMode ? Colors.white : Colors.black,
               ),
-              Text(
+              const Text(
                 'Educational Stages',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
@@ -61,7 +61,7 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
                 'assets/images/Group.svg',
                 // color: isDarkMode ? Colors.white : Colors.black,
               ),
-              Text(
+              const Text(
                 'Group',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
@@ -76,7 +76,7 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
               SvgPicture.asset(
                 'assets/images/students.svg',
               ),
-              Text(
+              const Text(
                 'Students',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
@@ -92,7 +92,7 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
               SvgPicture.asset(
                 'assets/images/audience.svg',
               ),
-              Text(
+              const Text(
                 'Audience',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
@@ -108,7 +108,7 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
               SvgPicture.asset(
                 'assets/images/payment_icon.svg',
               ),
-              Text(
+              const Text(
                 'Payment',
                 style: TextStyle(
                   color: ColorConst.kGrey1,

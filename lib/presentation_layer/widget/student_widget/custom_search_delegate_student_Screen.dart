@@ -55,7 +55,7 @@ class CustomSearchDelegateStudentScreen extends SearchDelegate {
           title: Text(
             result.nameStudent,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {
@@ -90,7 +90,7 @@ class CustomSearchDelegateStudentScreen extends SearchDelegate {
           title: Text(
             result.nameStudent,
             style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {

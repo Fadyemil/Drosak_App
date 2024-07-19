@@ -53,7 +53,7 @@ class CustomSearchDelegatePay extends SearchDelegate {
           title: Text(
             result.InputName ?? result.ExpenseName ?? 'Unknown',
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {
@@ -90,7 +90,7 @@ class CustomSearchDelegatePay extends SearchDelegate {
           title: Text(
             result.InputName ?? result.ExpenseName ?? 'Unknown',
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {

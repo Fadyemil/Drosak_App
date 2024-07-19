@@ -1,4 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
 import 'package:drosak/business_logic_layer/student/student_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/student_model.dart';
@@ -15,6 +16,8 @@ class StudentItemBody extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.sizeOf(context);
+    var themeState = context.watch<AppThemeCubit>().state;
+    bool isDarkMode = themeState is DarkCubit;
     return Container(
       margin: const EdgeInsets.all(8),
       padding: const EdgeInsets.all(8),
@@ -57,7 +60,7 @@ class StudentItemBody extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
-                color: Colors.white,
+                color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(height: 6),
@@ -66,7 +69,7 @@ class StudentItemBody extends StatelessWidget {
               style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
-                color: Colors.white,
+                color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(height: 6),
@@ -84,7 +87,7 @@ class StudentItemBody extends StatelessWidget {
                   style: TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w800,
-                    color: Colors.white,
+                    color: isDarkMode ? Colors.white : Colors.black,
                   ),
                 ),
               ),
@@ -97,7 +100,8 @@ class StudentItemBody extends StatelessWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: ColorConst.kWhiteColor.withOpacity(0.5),
+                color:
+                    isDarkMode ? Colors.white.withOpacity(0.5) : Colors.black87,
                 fontSize: 14,
               ),
             ),
@@ -151,10 +155,12 @@ class StudentTable extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeState = context.watch<AppThemeCubit>().state;
+    bool isDarkMode = themeState is DarkCubit;
     return DataTable2(
       border: TableBorder.all(
         width: 1,
-        color: Colors.white,
+        color: isDarkMode ? Colors.white : Colors.black,
       ),
       columnSpacing: 4,
       horizontalMargin: 12,
@@ -205,25 +211,33 @@ class StudentTable extends StatelessWidget {
             DataCell(Center(
               child: Text(
                 stModel.dateRegistration,
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
             DataCell(Center(
               child: Text(
                 stModel.day,
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
             DataCell(Center(
               child: Text(
                 stModel.TimePicker,
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
             DataCell(Center(
               child: Text(
                 '👈 👈',
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
           ],
