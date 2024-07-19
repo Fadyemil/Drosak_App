@@ -1,6 +1,6 @@
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/business_logic_layer/groub_add/groub_add_cubit.dart';
-import 'package:drosak/presentation_layer/widget/groub_widget.dart/groub_form.dart';
+import 'package:drosak/presentation_layer/widget/groub_widget/groub_form.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 

@@ -1,5 +1,5 @@
 import 'package:drosak/data_layer/models/groub_model.dart';
-import 'package:drosak/presentation_layer/widget/groub_widget.dart/edit_groub_body.dart';
+import 'package:drosak/presentation_layer/widget/groub_widget/edit_groub_body.dart';
 import 'package:flutter/material.dart';
 
 class EditGroubView extends StatelessWidget {

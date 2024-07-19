@@ -1,24 +1,25 @@
 // ignore_for_file: unused_local_variable
 
-import 'package:drosak/business_logic_layer/groub_add/groub_add_cubit.dart';
+import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
-import 'package:drosak/presentation_layer/widget/groub_widget.dart/dropdown_field.dart';
-import 'package:drosak/presentation_layer/widget/groub_widget.dart/select_time_widget.dart';
-import 'package:drosak/presentation_layer/widget/groub_widget.dart/title_widget.dart';
-import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_botton.dart';
+import 'package:drosak/presentation_layer/widget/groub_widget/dropdown_field.dart';
+import 'package:drosak/presentation_layer/widget/groub_widget/select_time_widget.dart';
+import 'package:drosak/presentation_layer/widget/groub_widget/title_widget.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_text_filed.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:intl/intl.dart';
 
-class GroubForm extends StatefulWidget {
-  const GroubForm({super.key});
+class EditGroubBody extends StatefulWidget {
+  const EditGroubBody({super.key, required this.groubModel});
+  final GroubModel groubModel;
 
   @override
-  State<GroubForm> createState() => _GroubFormState();
+  State<EditGroubBody> createState() => _EditGroubBodyState();
 }
 
-class _GroubFormState extends State<GroubForm> {
+class _EditGroubBodyState extends State<EditGroubBody> {
   final GlobalKey<FormState> formKey = GlobalKey();
   final List<String> educationalLevel = [
     'Grade 1',
@@ -44,14 +45,29 @@ class _GroubFormState extends State<GroubForm> {
     'Saturday',
   ];
 
-  String? selectedValueLevel, day, nameGroub, subtitle, numberStudent;
+  @override
+  void initState() {
+    super.initState();
+    day = daysOfWeek.contains(widget.groubModel.day)
+        ? widget.groubModel.day
+        : null;
+    ed_Level = educationalLevel.contains(widget.groubModel.edLevel)
+        ? widget.groubModel.edLevel
+        : null;
+    if (widget.groubModel.timePacker != null) {
+      final time = DateFormat.jm().parse(widget.groubModel.timePacker ?? '');
+      this.time = TimeOfDay(hour: time.hour, minute: time.minute);
+    }
+  }
+
+  String? ed_Level, day, nameGroub, subtitle, numberStudent;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
 
   TimeOfDay? time;
   void _showTimePicker() {
     showTimePicker(
       context: context,
-      initialTime: TimeOfDay.now(),
+      initialTime: time ?? TimeOfDay.now(),
     ).then((value) {
       setState(() {
         time = value;
@@ -84,10 +100,10 @@ class _GroubFormState extends State<GroubForm> {
               borderRadius: BorderRadius.circular(14),
             ),
             child: CustomTextField(
-              onSaved: (value) {
+              onChanged: (value) {
                 nameGroub = value;
               },
-              hint: 'Enter the name groub',
+              initialValue: widget.groubModel.nameGroub,
             ),
           ),
           SizedBox(height: 15),
@@ -100,10 +116,12 @@ class _GroubFormState extends State<GroubForm> {
                   child: DropdownField(
                     hint: 'Choose the educational stage',
                     items: educationalLevel,
-                    selectedValue: selectedValueLevel,
+                    selectedValue: ed_Level,
                     onChanged: (value) {
                       setState(() {
-                        selectedValueLevel = value;
+                        ed_Level = value;
+                        widget.groubModel.edLevel =
+                            value ?? widget.groubModel.edLevel;
                       });
                     },
                   ),
@@ -125,6 +143,7 @@ class _GroubFormState extends State<GroubForm> {
                     onChanged: (value) {
                       setState(() {
                         day = value;
+                        widget.groubModel.day = value ?? widget.groubModel.day;
                       });
                     },
                   ),
@@ -148,47 +167,38 @@ class _GroubFormState extends State<GroubForm> {
           SizedBox(height: 15),
           CustomTextField(
             keyboardType: TextInputType.number,
-            hint: ' enter number of students',
-            onSaved: (value) {
+            onChanged: (value) {
               numberStudent = value;
             },
+            initialValue: widget.groubModel.numberStudent,
           ),
           SizedBox(height: 15),
           CustomTextField(
-            onSaved: (value) {
+            onChanged: (value) {
               subtitle = value;
             },
-            hint: 'comments',
+            initialValue: widget.groubModel.subtitle,
             maxLines: 4,
           ),
           SizedBox(height: 15),
-          BlocBuilder<GroubAddCubit, GroubAddState>(
-            builder: (context, state) {
-              return CustomButton(
-                isLoading: state is GroubAddLoading ? true : false,
-                onTap: () {
-                  if (formKey.currentState!.validate()) {
-                    formKey.currentState!.save();
-                    // String currentDate = _formatTime(time).toString();
-                    GroubModel groubModel = GroubModel(
-                      nameGroub: nameGroub!,
-                      edLevel: selectedValueLevel!,
-                      day: day!,
-                      timePacker: _formatTime(time),
-                      numberStudent: numberStudent!,
-                      subtitle: subtitle!,
-                    );
-                    context.read<GroubAddCubit>().addGroub(groubModel);
-                    print(_formatTime(time));
-                    print(day);
-                  } else {
-                    autovalidateMode = AutovalidateMode.always;
-                    setState(() {});
-                  }
-                },
-              );
+          ElevatedButton(
+            onPressed: () {
+              widget.groubModel.nameGroub =
+                  nameGroub ?? widget.groubModel.nameGroub;
+              widget.groubModel.subtitle =
+                  subtitle ?? widget.groubModel.subtitle;
+              widget.groubModel.numberStudent =
+                  numberStudent ?? widget.groubModel.numberStudent;
+              widget.groubModel.timePacker = time != null
+                  ? _formatTime(time)
+                  : widget.groubModel.timePacker;
+
+              widget.groubModel.save();
+              BlocProvider.of<GroubCubit>(context).fetchAllGroub();
+              Navigator.pop(context);
             },
-          ),
+            child: Text('done edit'),
+          )
         ],
       ),
     );

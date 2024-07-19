@@ -3,7 +3,7 @@ import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
-import 'package:drosak/presentation_layer/widget/groub_widget.dart/edit_groub_view.dart';
+import 'package:drosak/presentation_layer/widget/groub_widget/edit_groub_view.dart';
 // import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
