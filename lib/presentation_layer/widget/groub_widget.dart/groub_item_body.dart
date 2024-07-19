@@ -1,4 +1,5 @@
 import 'package:data_table_2/data_table_2.dart';
+import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
@@ -17,6 +18,8 @@ class GroubItemBody extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeState = context.watch<AppThemeCubit>().state;
+    bool isDarkMode = themeState is DarkCubit;
     Size size = MediaQuery.sizeOf(context);
     var data = context.read<GroubCubit>().GroubList;
     return Container(
@@ -58,10 +61,10 @@ class GroubItemBody extends StatelessWidget {
           children: [
             Text(
               "${data?[index].edLevel ?? ''} / ${data?[index].nameGroub ?? ""}",
-              style: const TextStyle(
+              style: TextStyle(
                 fontSize: 16,
                 fontWeight: FontWeight.w800,
-                color: Colors.white,
+                color: isDarkMode ? Colors.white : Colors.black,
               ),
             ),
             const SizedBox(height: 6),
@@ -78,7 +81,8 @@ class GroubItemBody extends StatelessWidget {
               maxLines: 3,
               overflow: TextOverflow.ellipsis,
               style: TextStyle(
-                color: ColorConst.kWhiteColor.withOpacity(0.5),
+                color:
+                    isDarkMode ? Colors.white.withOpacity(0.5) : Colors.black87,
                 fontSize: 14,
               ),
             ),
@@ -132,10 +136,12 @@ class Table extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var themeState = context.watch<AppThemeCubit>().state;
+    bool isDarkMode = themeState is DarkCubit;
     return DataTable2(
       border: TableBorder.all(
         width: 1,
-        color: Colors.white,
+        color: isDarkMode ? Colors.white : Colors.black,
       ),
       columnSpacing: 4,
       horizontalMargin: 12,
@@ -186,19 +192,25 @@ class Table extends StatelessWidget {
             DataCell(Center(
               child: Text(
                 groubModel.numberStudent ?? 'number studen',
-                style: const TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
             DataCell(Center(
               child: Text(
                 groubModel.day ?? 'day',
-                style: const TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
             DataCell(Center(
               child: Text(
                 groubModel.timePacker ?? 'time',
-                style: const TextStyle(color: ColorConst.kWhiteColor),
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
             const DataCell(Center(

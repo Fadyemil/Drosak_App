@@ -55,7 +55,7 @@ class CustomSearchDelegateGroupScreen extends SearchDelegate {
           title: Text(
             result.nameGroub!,
             style: const TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {
@@ -90,7 +90,7 @@ class CustomSearchDelegateGroupScreen extends SearchDelegate {
           title: Text(
             result.nameGroub!,
             style: TextStyle(
-              color: Colors.white,
+              color: Color.fromARGB(249, 27, 126, 240),
             ),
           ),
           onTap: () {
