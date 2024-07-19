@@ -3,6 +3,7 @@
 import 'package:drosak/business_logic_layer/audience/audience_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:drosak/data_layer/models/audience_model.dart';
+import 'package:drosak/presentation_layer/widget/payment_widget/edit_payment_view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
@@ -36,7 +37,7 @@ class Paymentitembody extends StatelessWidget {
           children: [
             SlidableAction(
               borderRadius: BorderRadius.all(Radius.circular(8)),
-              onPressed: null,
+              onPressed: onPressedEdit,
               backgroundColor: Color(0xFF7BC043),
               foregroundColor: Colors.white,
               icon: Icons.edit,
@@ -98,11 +99,11 @@ share price = ${audMidel.sharePrice}\$'''
             FocusScope.of(context).unfocus();
           },
           child: Container(
-              // height: size.height * 0.52,
-              // child: EditAudienceView(
-              //   audienceModel: adModel,
-              // ),
-              ),
+            // height: size.height * 0.52,
+            child: EditPaymentView(
+              audienceModel: audMidel,
+            ),
+          ),
         );
       },
     );
