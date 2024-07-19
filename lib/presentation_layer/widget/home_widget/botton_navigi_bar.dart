@@ -1,29 +1,39 @@
+// import 'package:bloc/bloc.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
-// import 'package:drosak/business_logic_layer/cubit/select_page_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
 import 'package:flutter/material.dart';
-// import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
+// import 'package:drosak/business_logic_layer/cubit/themestate.dart';
 
-class bottonNavigiBar extends StatefulWidget {
-  const bottonNavigiBar(
-      {super.key, required this.onItemTapped, required this.selectedIndex});
+class BottomNavigiBar extends StatefulWidget {
+  const BottomNavigiBar({
+    super.key,
+    required this.onItemTapped,
+    required this.selectedIndex,
+  });
 
   @override
-  State<bottonNavigiBar> createState() => _bottonNavigiBarState();
+  State<BottomNavigiBar> createState() => _BottomNavigiBarState();
   final void Function(int) onItemTapped;
   final int selectedIndex;
 }
 
-class _bottonNavigiBarState extends State<bottonNavigiBar> {
+class _BottomNavigiBarState extends State<BottomNavigiBar> {
   @override
   Widget build(BuildContext context) {
+    // استخدام AppThemeCubit للحصول على الحالة الحالية
+    var themeState = context.watch<AppThemeCubit>().state;
+    bool isDarkMode = themeState is DarkCubit;
+
     return Scaffold(
-      backgroundColor: ColorConst.kBlackColor,
+      backgroundColor: isDarkMode ? ColorConst.kBlackColor : Colors.white,
       bottomNavigationBar: CurvedNavigationBar(
-        backgroundColor: ColorConst.kBlackColor,
-        color: ColorConst.kBlackLight,
-        buttonBackgroundColor: ColorConst.kWhiteColor,
+        backgroundColor: isDarkMode ? ColorConst.kBlackColor : Colors.white,
+        color: isDarkMode ? ColorConst.kBlackLight : Colors.white,
+        buttonBackgroundColor:
+            isDarkMode ? ColorConst.kWhiteColor : Colors.black,
         onTap: widget.onItemTapped,
         letIndexChange: (index) => true,
         items: [
@@ -31,64 +41,80 @@ class _bottonNavigiBarState extends State<bottonNavigiBar> {
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset('assets/images/educational_stages.svg'),
+              SvgPicture.asset(
+                'assets/images/educational_stages.svg',
+                // color: isDarkMode ? Colors.white : Colors.black,
+              ),
               Text(
                 'Educational Stages',
-                style: TextStyle(color: Color(0xff47463C)),
-              )
+                style: TextStyle(
+                  color: ColorConst.kGrey1,
+                ),
+              ),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset('assets/images/Group.svg'),
+              SvgPicture.asset(
+                'assets/images/Group.svg',
+                // color: isDarkMode ? Colors.white : Colors.black,
+              ),
               Text(
                 'Group',
-                style: TextStyle(color: Color(0xff47463C)),
-              )
+                style: TextStyle(
+                  color: ColorConst.kGrey1,
+                ),
+              ),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset('assets/images/students.svg'),
+              SvgPicture.asset(
+                'assets/images/students.svg',
+              ),
               Text(
-                'students',
+                'Students',
                 style: TextStyle(
-                  color: Color(0xff47463C),
+                  color: ColorConst.kGrey1,
                   fontSize: 12,
                 ),
-              )
+              ),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset('assets/images/audience.svg'),
+              SvgPicture.asset(
+                'assets/images/audience.svg',
+              ),
               Text(
-                'audience',
+                'Audience',
                 style: TextStyle(
-                  color: Color(0xff47463C),
+                  color: ColorConst.kGrey1,
                   fontSize: 12,
                 ),
-              )
+              ),
             ],
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
-              SvgPicture.asset('assets/images/payment_icon.svg'),
+              SvgPicture.asset(
+                'assets/images/payment_icon.svg',
+              ),
               Text(
-                'payment',
+                'Payment',
                 style: TextStyle(
-                  color: Color(0xff47463C),
+                  color: ColorConst.kGrey1,
                   fontSize: 12,
                 ),
-              )
+              ),
             ],
           ),
         ],

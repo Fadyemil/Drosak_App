@@ -28,13 +28,17 @@ class ApplicationPage extends StatelessWidget {
                   children: [
                     ElevatedButton(
                         onPressed: () {
-                         context.read<AppThemeCubit>().ChangeTheme(Themestate.light);
+                          context
+                              .read<AppThemeCubit>()
+                              .ChangeTheme(Themestate.light);
                         },
                         child: const Text('Light theme')),
                     const SizedBox(height: 15),
                     ElevatedButton(
                         onPressed: () {
-                           context.read<AppThemeCubit>().ChangeTheme(Themestate.dark);
+                          context
+                              .read<AppThemeCubit>()
+                              .ChangeTheme(Themestate.dark);
                         },
                         child: const Text('Dark theme')),
                   ],
@@ -51,7 +55,7 @@ class ApplicationPage extends StatelessWidget {
                   topRight: Radius.circular(20),
                 ),
               ),
-              child: bottonNavigiBar(
+              child: BottomNavigiBar(
                 selectedIndex: state.index,
                 onItemTapped: (int x) {
                   BlocProvider.of<SelectPageCubit>(context).chage(index: x);

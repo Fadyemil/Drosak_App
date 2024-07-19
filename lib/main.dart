@@ -106,9 +106,20 @@ class MyApp extends StatelessWidget {
     return ThemeData.light().copyWith(
       scaffoldBackgroundColor: Colors.white,
       appBarTheme: AppBarTheme(
-        color: ColorConst.kPrimaryColorLight,
+        color: ColorConst.kPrimaryColor,
+        titleTextStyle: TextStyle(color: Colors.black), // النص في الـ AppBar
       ),
-      colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
+      textTheme: TextTheme(
+          // bodyText1: TextStyle(color: Colors.black), // نصوص عادية
+          // bodyText2: TextStyle(color: Colors.black), // نصوص ثانوية
+          // أضف المزيد حسب الحاجة
+          ),
+      colorScheme: ColorScheme.fromSeed(
+        seedColor: Colors.deepPurple,
+        primary: ColorConst.kPrimaryColor,
+        onPrimary: Colors.white,
+        secondary: Colors.deepPurpleAccent,
+      ),
       useMaterial3: true,
     );
   }
