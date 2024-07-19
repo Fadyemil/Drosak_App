@@ -6,8 +6,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class AudienceBody extends StatefulWidget {
-  const AudienceBody({super.key});
-// final ScrollController scrollController;
+  const AudienceBody({super.key, required this.scrollController});
+  final ScrollController scrollController;
   @override
   State<AudienceBody> createState() => _AudienceBodyState();
 }
@@ -30,7 +30,7 @@ class _AudienceBodyState extends State<AudienceBody> {
             SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                // controller: widget.scrollController,
+                controller: widget.scrollController,
                 itemCount: Data?.length ?? 0,
                 itemBuilder: (context, index) {
                   if (Data?[index].numberStudent != null) {

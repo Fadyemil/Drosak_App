@@ -7,7 +7,8 @@ import 'package:flutter_animate/flutter_animate.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 class PaymentBody extends StatefulWidget {
-  const PaymentBody({super.key});
+  const PaymentBody({super.key, required this.scrollController});
+  final ScrollController scrollController;
 
   @override
   State<PaymentBody> createState() => _PaymentBodyState();
@@ -33,7 +34,7 @@ class _PaymentBodyState extends State<PaymentBody> {
             SizedBox(height: 16),
             Expanded(
               child: ListView.builder(
-                // controller: widget.scrollController,
+                controller: widget.scrollController,
                 itemCount: Data?.length ?? 0,
                 itemBuilder: (context, index) {
                   return Paymentitembody(
