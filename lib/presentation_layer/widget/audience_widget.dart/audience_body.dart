@@ -33,13 +33,16 @@ class _AudienceBodyState extends State<AudienceBody> {
                 // controller: widget.scrollController,
                 itemCount: Data?.length ?? 0,
                 itemBuilder: (context, index) {
-                  return AudienceItemBody(
-                    adModel: Data![index],
-                  ).animate().fade(
-                        delay: Duration(milliseconds: 250),
-                        duration: Duration(milliseconds: 200),
-                        curve: Curves.easeIn,
-                      );
+                  if (Data?[index].numberStudent != null) {
+                    return AudienceItemBody(
+                      adModel: Data![index],
+                    ).animate().fade(
+                          delay: Duration(milliseconds: 250),
+                          duration: Duration(milliseconds: 200),
+                          curve: Curves.easeIn,
+                        );
+                  }
+                  return SizedBox.shrink();
                 },
               ),
             )

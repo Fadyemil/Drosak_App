@@ -86,6 +86,7 @@ class _AudienceFormState extends State<AudienceForm> {
                       numberStudent: numberStudent,
                       sharePrice: sharePrice,
                       totalMoney: total,
+                      IncreasesMoney: total,
                     );
                     context.read<AudienceAddCubit>().addAudience(audienceModel);
                   } else {
