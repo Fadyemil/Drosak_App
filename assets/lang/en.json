@@ -1,3 +1,9 @@
 {
-    "home_page":"Home Page"
-}
+    "home_page": "Home Page",
+    "educational_stages": "Educational Stages",
+    "group": "Group",
+    "students": "Students",
+    "audience": "Audience",
+    "payment": "Payment"
+  }
+  

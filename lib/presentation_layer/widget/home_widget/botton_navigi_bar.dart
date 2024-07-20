@@ -1,6 +1,7 @@
 // import 'package:bloc/bloc.dart';
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -45,8 +46,9 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
                 'assets/images/educational_stages.svg',
                 // color: isDarkMode ? Colors.white : Colors.black,
               ),
-              const Text(
-                'Educational Stages',
+              Text(
+                AppLocalizations.of(context)?.translate('educational_stages') ??
+                    '',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
                 ),
@@ -61,8 +63,8 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
                 'assets/images/Group.svg',
                 // color: isDarkMode ? Colors.white : Colors.black,
               ),
-              const Text(
-                'Group',
+              Text(
+                AppLocalizations.of(context)?.translate('group') ?? '',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
                 ),
@@ -76,8 +78,8 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
               SvgPicture.asset(
                 'assets/images/students.svg',
               ),
-              const Text(
-                'Students',
+              Text(
+                AppLocalizations.of(context)?.translate('students') ?? '',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
                   fontSize: 12,
@@ -92,8 +94,8 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
               SvgPicture.asset(
                 'assets/images/audience.svg',
               ),
-              const Text(
-                'Audience',
+              Text(
+                AppLocalizations.of(context)?.translate('audience') ?? '',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
                   fontSize: 12,
@@ -108,8 +110,8 @@ class _BottomNavigiBarState extends State<BottomNavigiBar> {
               SvgPicture.asset(
                 'assets/images/payment_icon.svg',
               ),
-              const Text(
-                'Payment',
+              Text(
+                AppLocalizations.of(context)?.translate('payment') ?? '',
                 style: TextStyle(
                   color: ColorConst.kGrey1,
                   fontSize: 12,
