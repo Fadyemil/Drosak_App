@@ -2,6 +2,7 @@ import 'package:data_table_2/data_table_2.dart';
 import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
 import 'package:drosak/business_logic_layer/groub/groub_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget/edit_groub_view.dart';
 // import 'package:drosak/data_layer/models/groub_model.dart';
@@ -41,7 +42,7 @@ class GroubItemBody extends StatelessWidget {
               backgroundColor: Color(0xFF7BC043),
               foregroundColor: Colors.white,
               icon: Icons.edit,
-              label: 'edid',
+              label: AppLocalizations.of(context)?.translate('edit') ?? '',
               autoClose: true,
             ),
             const SizedBox(width: 3),
@@ -51,7 +52,7 @@ class GroubItemBody extends StatelessWidget {
               backgroundColor: const Color.fromARGB(255, 59, 45, 192),
               foregroundColor: Colors.white,
               icon: Icons.delete,
-              label: 'delete',
+              label: AppLocalizations.of(context)?.translate('delete') ?? '',
               autoClose: true,
             ),
           ],
@@ -147,11 +148,11 @@ class Table extends StatelessWidget {
       horizontalMargin: 12,
       minWidth: 200,
       dividerThickness: 2.5,
-      columns: const [
+      columns: [
         DataColumn2(
           label: Center(
             child: Text(
-              'number 👨‍💼',
+              AppLocalizations.of(context)?.translate('group_time') ?? '',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -160,7 +161,7 @@ class Table extends StatelessWidget {
         DataColumn2(
           label: Center(
             child: Text(
-              'Day',
+              AppLocalizations.of(context)?.translate('day') ?? '',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -169,7 +170,7 @@ class Table extends StatelessWidget {
         DataColumn2(
           label: Center(
             child: Text(
-              'time',
+              AppLocalizations.of(context)?.translate('time') ?? '',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -178,7 +179,7 @@ class Table extends StatelessWidget {
         DataColumn2(
           label: Center(
             child: Text(
-              'Group time 📗',
+              AppLocalizations.of(context)?.translate('number') ?? '',
               style: TextStyle(color: ColorConst.kPrimaryColor),
             ),
           ),
@@ -191,10 +192,8 @@ class Table extends StatelessWidget {
           cells: [
             DataCell(Center(
               child: Text(
-                groubModel.numberStudent ?? 'number studen',
-                style: TextStyle(
-                  color: isDarkMode ? Colors.white : Colors.black,
-                ),
+                AppLocalizations.of(context)?.translate('hand') ?? '',
+                style: TextStyle(color: ColorConst.kWhiteColor),
               ),
             )),
             DataCell(Center(
@@ -213,10 +212,12 @@ class Table extends StatelessWidget {
                 ),
               ),
             )),
-            const DataCell(Center(
+            DataCell(Center(
               child: Text(
-                '👈 👈',
-                style: TextStyle(color: ColorConst.kWhiteColor),
+                groubModel.numberStudent ?? 'number studen',
+                style: TextStyle(
+                  color: isDarkMode ? Colors.white : Colors.black,
+                ),
               ),
             )),
           ],

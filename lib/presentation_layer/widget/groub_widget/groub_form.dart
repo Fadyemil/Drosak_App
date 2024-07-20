@@ -1,7 +1,10 @@
 // ignore_for_file: unused_local_variable
 
+// import 'dart:convert';
+
 import 'package:drosak/business_logic_layer/groub_add/groub_add_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/models/groub_model.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget/dropdown_field.dart';
 import 'package:drosak/presentation_layer/widget/groub_widget/select_time_widget.dart';
@@ -20,29 +23,31 @@ class GroubForm extends StatefulWidget {
 
 class _GroubFormState extends State<GroubForm> {
   final GlobalKey<FormState> formKey = GlobalKey();
-  final List<String> educationalLevel = [
-    'Grade 1',
-    'Grade 2',
-    'Grade 3',
-    'Grade 4',
-    'Grade 5',
-    'Grade 6',
-    'Grade 7',
-    'Grade 8',
-    'Grade 9',
-    'Grade 10',
-    'Grade 11',
-    'Grade 12',
-  ];
-  final List<String> daysOfWeek = [
-    'Sunday',
-    'Monday',
-    'Tuesday',
-    'Wednesday',
-    'Thursday',
-    'Friday',
-    'Saturday',
-  ];
+  // To get translated educational levels
+  List<String> get educationalLevels {
+    // Fetch the string from localization
+    String data = AppLocalizations.of(context)!.translate('educational_levels');
+
+    // Clean up the string if necessary (e.g., removing surrounding brackets or quotes)
+    data = data.replaceAll('[', '').replaceAll(']', '').replaceAll('"', '');
+
+    // Split the string into a list of items
+    List<String> levels = data.split(',').map((item) => item.trim()).toList();
+
+    return levels;
+  }
+
+  // To get translated days of the week
+  List<String> get daysOfWeek {
+    String data = AppLocalizations.of(context)!.translate('days_of_week');
+    // Clean up the string if necessary (e.g., removing surrounding brackets or quotes)
+    data = data.replaceAll('[', '').replaceAll(']', '').replaceAll('"', '');
+
+    // Split the string into a list of items
+    List<String> levels = data.split(',').map((item) => item.trim()).toList();
+
+    return levels;
+  }
 
   String? selectedValueLevel, day, nameGroub, subtitle, numberStudent;
   AutovalidateMode autovalidateMode = AutovalidateMode.disabled;
@@ -61,7 +66,7 @@ class _GroubFormState extends State<GroubForm> {
 
   String _formatTime(TimeOfDay? time) {
     if (time == null) {
-      return 'No Time Selected';
+      return AppLocalizations.of(context)!.translate('no_time_selected');
     }
     final now = DateTime.now();
     final dt = DateTime(now.year, now.month, now.day, time.hour, time.minute);
@@ -87,19 +92,22 @@ class _GroubFormState extends State<GroubForm> {
               onSaved: (value) {
                 nameGroub = value;
               },
-              hint: 'Enter the name groub',
+              hint: AppLocalizations.of(context)!.translate('enter_name_group'),
             ),
           ),
           SizedBox(height: 15),
           Row(
             children: [
-              TitleWidget(title: 'educational level'),
+              TitleWidget(
+                  title: AppLocalizations.of(context)!
+                      .translate('educational_level')),
               SizedBox(width: 8),
               Expanded(
                 child: Container(
                   child: DropdownField(
-                    hint: 'Choose the educational stage',
-                    items: educationalLevel,
+                    hint: AppLocalizations.of(context)!
+                        .translate('choose_educational_stage'),
+                    items: educationalLevels,
                     selectedValue: selectedValueLevel,
                     onChanged: (value) {
                       setState(() {
@@ -114,12 +122,13 @@ class _GroubFormState extends State<GroubForm> {
           SizedBox(height: 15),
           Row(
             children: [
-              TitleWidget(title: 'day'),
+              TitleWidget(
+                  title: AppLocalizations.of(context)!.translate('day')),
               SizedBox(width: 8),
               Expanded(
                 child: Container(
                   child: DropdownField(
-                    hint: 'Choose today',
+                    hint: AppLocalizations.of(context)!.translate('choose_day'),
                     items: daysOfWeek,
                     selectedValue: day,
                     onChanged: (value) {
@@ -136,7 +145,7 @@ class _GroubFormState extends State<GroubForm> {
           Row(
             children: [
               TitleWidget(
-                title: 'Time Picker',
+                title: AppLocalizations.of(context)!.translate('time_picker'),
               ),
               const SizedBox(width: 16),
               SelectTime(
@@ -148,7 +157,8 @@ class _GroubFormState extends State<GroubForm> {
           SizedBox(height: 15),
           CustomTextField(
             keyboardType: TextInputType.number,
-            hint: ' enter number of students',
+            hint: AppLocalizations.of(context)!
+                .translate('enter_number_of_students'),
             onSaved: (value) {
               numberStudent = value;
             },
@@ -158,7 +168,7 @@ class _GroubFormState extends State<GroubForm> {
             onSaved: (value) {
               subtitle = value;
             },
-            hint: 'comments',
+            hint: AppLocalizations.of(context)!.translate('comments'),
             maxLines: 4,
           ),
           SizedBox(height: 15),
