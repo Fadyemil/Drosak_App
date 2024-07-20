@@ -1,6 +1,8 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:animated_splash_screen/animated_splash_screen.dart';
+import 'package:drosak/business_logic_layer/app_lan/app_lan_cubit.dart';
+import 'package:drosak/business_logic_layer/app_lan/lan_enums.dart';
 import 'package:drosak/business_logic_layer/audience/audience_cubit.dart';
 import 'package:drosak/business_logic_layer/audience_add/audience_add_cubit.dart';
 import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
@@ -14,6 +16,7 @@ import 'package:drosak/business_logic_layer/student/student_cubit.dart';
 import 'package:drosak/business_logic_layer/student_add/student_add_cubit.dart';
 // import 'package:drosak/business_logic_layer/theme/theme_bloc.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/helper/sh_re.dart';
 import 'package:drosak/data_layer/models/audience_model.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
@@ -26,6 +29,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -51,6 +55,10 @@ class MyApp extends StatelessWidget {
       providers: [
         BlocProvider(
           create: (context) => AppThemeCubit()..ChangeTheme(Themestate.initial),
+        ),
+        BlocProvider(
+          create: (context) =>
+              AppLanCubit()..appLanguageFunc(Languageenums.Initial),
         ),
         BlocProvider(
           create: (context) => SelectPageCubit(),
@@ -79,23 +87,47 @@ class MyApp extends StatelessWidget {
       ],
       child: Builder(builder: (context) {
         var themeState = context.select((AppThemeCubit bloc) => bloc.state);
+        var langState = context.select((AppLanCubit bloc) => bloc.state);
         return MaterialApp(
+          locale: (langState is AppChangeLang)
+              ? (langState.languageCode == 'en')
+                  ? const Locale('en')
+                  : const Locale('ar')
+              : const Locale('en'),
+          supportedLocales: const [
+            Locale('en'), // English
+            Locale('ar'), // Arabic
+          ],
+          //~ Delegates for translating texts and UI elements
+          localizationsDelegates: [
+            AppLocalizations.delegate,
+            GlobalMaterialLocalizations.delegate,
+            GlobalWidgetsLocalizations.delegate,
+            GlobalCupertinoLocalizations.delegate,
+          ],
+          //~ Function to determine the preferred language based on user device settings
+          localeListResolutionCallback: (deviceLocale, supportedLocales) {
+            //~ Check supported languages and match them with the device language
+            for (var locale in supportedLocales) {
+              if (deviceLocale != null) {
+                Locale device = deviceLocale
+                    .first; //* Get the first preferred language on the device
+                if (device.languageCode == locale.languageCode) {
+                  return device; //* Return device language if supported
+                }
+              }
+            }
+            return supportedLocales
+                .first; //* Use default language if device language is not supported
+          },
           debugShowCheckedModeBanner: false,
           title: 'Flutter Demo',
-          theme: (themeState is LightCubit) ? lightTheme() : darkTheme(),
 
-          // theme: ThemeData(
-          //   scaffoldBackgroundColor: ColorConst.kBlackColor,
-          //   appBarTheme: AppBarTheme(
-          //     color: ColorConst.kPrimaryColor,
-          //   ),
-          //   colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-          //   useMaterial3: true,
-          // ),
+          theme: (themeState is LightCubit) ? lightTheme() : darkTheme(),
           home: AnimatedSplashScreen(
               splashIconSize: MediaQuery.sizeOf(context).height,
               splashTransition: SplashTransition.fadeTransition,
-              splash: SplashScreen(),
+              splash: const SplashScreen(),
               nextScreen: const ApplicationPage()),
         );
       }),
@@ -105,21 +137,10 @@ class MyApp extends StatelessWidget {
   ThemeData lightTheme() {
     return ThemeData.light().copyWith(
       scaffoldBackgroundColor: Colors.white,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         color: ColorConst.kPrimaryColor,
         titleTextStyle: TextStyle(color: Colors.black), // النص في الـ AppBar
       ),
-      // textTheme: TextTheme(
-      //     // bodyText1: TextStyle(color: Colors.black), // نصوص عادية
-      //     // bodyText2: TextStyle(color: Colors.black), // نصوص ثانوية
-      //     // أضف المزيد حسب الحاجة
-      //     ),
-      // colorScheme: ColorScheme.fromSeed(
-      //   seedColor: Colors.deepPurple,
-      //   primary: ColorConst.kPrimaryColor,
-      //   onPrimary: Colors.white,
-      //   secondary: Colors.deepPurpleAccent,
-      // ),
       useMaterial3: true,
     );
   }
@@ -127,7 +148,7 @@ class MyApp extends StatelessWidget {
   ThemeData darkTheme() {
     return ThemeData.dark().copyWith(
       scaffoldBackgroundColor: ColorConst.kBlackColor,
-      appBarTheme: AppBarTheme(
+      appBarTheme: const AppBarTheme(
         color: ColorConst.kPrimaryColor,
       ),
       colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
