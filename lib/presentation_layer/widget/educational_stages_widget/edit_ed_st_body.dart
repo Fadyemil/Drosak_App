@@ -1,4 +1,5 @@
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 // import 'package:drosak/presentation_layer/widget/home_widget/app_bar.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_text_filed.dart';
@@ -67,7 +68,9 @@ class _EditEDSTbodyColumnState extends State<EditEDSTbodyColumn> {
               BlocProvider.of<EdStCubit>(context).fetchAllEdSt();
               Navigator.pop(context);
             },
-            child: Text('done edit'),
+            child: Text(
+              AppLocalizations.of(context)?.translate("done_edit") ?? '',
+            ),
           )
         ],
       ),

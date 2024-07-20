@@ -1,6 +1,7 @@
 import 'package:drosak/business_logic_layer/cubit/app_theme_cubit.dart';
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/presentation_layer/widget/educational_stages_widget/edit_ed_st_view.dart';
 import 'package:flutter/material.dart';
@@ -38,7 +39,7 @@ class EdStItemBody extends StatelessWidget {
               backgroundColor: const Color(0xFF7BC043),
               foregroundColor: Colors.white,
               icon: Icons.edit,
-              label: 'edid',
+              label: AppLocalizations.of(context)?.translate('edit') ?? '',
               autoClose: true,
             ),
             const SizedBox(width: 3),
@@ -48,7 +49,7 @@ class EdStItemBody extends StatelessWidget {
               backgroundColor: const Color.fromARGB(255, 59, 45, 192),
               foregroundColor: Colors.white,
               icon: Icons.delete,
-              label: 'delete',
+              label: AppLocalizations.of(context)?.translate('delete') ?? '',
               autoClose: true,
             ),
           ],
@@ -120,8 +121,12 @@ class EdStItemBody extends StatelessWidget {
     edStModel.delete();
     context.read<EdStCubit>().fetchAllEdSt();
     ScaffoldMessenger.of(context).showSnackBar(
-      const SnackBar(
-        content: Center(child: Text('Delete this is Stage')),
+      SnackBar(
+        content: Center(
+          child: Text(
+            AppLocalizations.of(context)?.translate('delete_this_stage') ?? '',
+          ),
+        ),
       ),
     );
   }

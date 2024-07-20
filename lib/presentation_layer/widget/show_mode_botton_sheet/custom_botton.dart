@@ -1,4 +1,5 @@
 import 'package:drosak/core/const/color_const.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -28,8 +29,8 @@ class CustomButton extends StatelessWidget {
                     color: Colors.black,
                   ),
                 )
-              : const Text(
-                  'Add',
+              : Text(
+                  AppLocalizations.of(context)!.translate('submit'),
                   style: TextStyle(
                     color: Colors.black,
                     fontWeight: FontWeight.bold,

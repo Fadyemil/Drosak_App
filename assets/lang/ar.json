@@ -4,6 +4,15 @@
     "group": "المجموعات",
     "students": "الطلاب",
     "audience": "الحضور",
-    "payment": "فلوسي"
+    "payment": "فلوسي",
+    "enter_educational_stage": "أدخل المرحلة التعليمية",
+  "comments": "التعليقات",
+  "submit": "إرسال",
+  "delete": "حذف",
+  "edit": "تعديل",
+  "delete_this_stage": "احذف هذه المرحلة",
+  "done_edit": " تعديل"
+
+
   }
   

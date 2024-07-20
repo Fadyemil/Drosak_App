@@ -1,6 +1,7 @@
 // ignore_for_file: unused_local_variable
 
 import 'package:drosak/business_logic_layer/ed_st_add/ed_st_add_cubit.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_botton.dart';
 import 'package:drosak/presentation_layer/widget/show_mode_botton_sheet/custom_text_filed.dart';
@@ -34,7 +35,8 @@ class _AddEdStFormState extends State<AddEdStForm> {
             onSaved: (value) {
               title = value;
             },
-            hint: 'Enter the educational stage',
+            hint: AppLocalizations.of(context)
+                ?.translate('enter_educational_stage'),
           ),
           const SizedBox(
             height: 16,
@@ -43,7 +45,7 @@ class _AddEdStFormState extends State<AddEdStForm> {
             onSaved: (value) {
               subTitle = value;
             },
-            hint: 'comments',
+            hint: AppLocalizations.of(context)?.translate('comments'),
             maxLines: 5,
           ),
           const SizedBox(

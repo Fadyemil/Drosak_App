@@ -2,6 +2,7 @@
 // import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
 // import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/business_logic_layer/ed_st/ed_st_cubit.dart';
+import 'package:drosak/data_layer/helper/appLocalizations.dart';
 import 'package:drosak/data_layer/models/ed_st_model.dart';
 import 'package:drosak/presentation_layer/widget/educational_stages_widget/CustomSearchDelegateEdStScreen.dart';
 import 'package:drosak/presentation_layer/widget/educational_stages_widget/ed_st_body.dart';
@@ -42,7 +43,9 @@ class _EducationalStagesState extends State<EducationalStages> {
       body: Column(
         children: [
           AppBarApp(
-            text: 'Educational Stages',
+            text:
+                AppLocalizations.of(context)?.translate('educational_stages') ??
+                    '',
             add: () {
               showModalBottomSheet(
                 backgroundColor: Color.fromARGB(255, 16, 112, 124),

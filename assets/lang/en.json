@@ -4,6 +4,16 @@
     "group": "Group",
     "students": "Students",
     "audience": "Audience",
-    "payment": "Payment"
-  }
+    "payment": "Payment",
+    "enter_educational_stage": "Enter the educational stage",
+    "comments": "Comments",
+    "submit": "Submit",
+    "delete": "Delete",
+    "edit": "Edit",
+    "delete_this_stage": "Delete this stage",
+    "done_edit": "Edit"
+
+
+
+}
   
